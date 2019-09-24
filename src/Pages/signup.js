@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Pic from "../images/Pic.jpg";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 //material ui
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -20,6 +19,10 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 //bring grid
 import Grid from "@material-ui/core/Grid";
+
+//redux
+import { connect } from "react-redux";
+import { signupUser } from "../redux/actions/userAction";
 
 const styles = {
   //classes.these atributes
@@ -65,7 +68,7 @@ class signup extends Component {
       password: "",
       confirmPassword: "",
       handle: "", //name
-      loading: false,
+
       category: "",
       errors: {}
     };
@@ -85,25 +88,12 @@ class signup extends Component {
       category: this.state.category
     };
 
-    axios
-      .post("http://localhost:5000/user/signup", newUserData)
-      .then(res => {
-        console.log(res.data);
-        localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`); //when we get token res.data we need to store it locally if something happen to connection
-        this.setState({
-          loading: false
-        });
-        this.props.history.push("/"); //use in react to push a url and got to that path
-      })
-      .catch(err => {
-        this.setState({
-          errors: err.response.data,
-          loading: false
-        });
-      });
-
-    console.log(newUserData);
+    this.props.signupUser(newUserData, this.props.history);
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.UI.errors) this.setState({ errors: nextProps.UI.errors }); //get errors and set them to local state
+  }
 
   handleChange = event => {
     this.setState({
@@ -112,8 +102,11 @@ class signup extends Component {
   };
 
   render() {
-    const { classes } = this.props;
-    const { errors, loading } = this.state;
+    const {
+      classes,
+      UI: { loading }
+    } = this.props;
+    const { errors } = this.state;
 
     return (
       <Grid container spacing={10} className={classes.form}>
@@ -225,7 +218,18 @@ class signup extends Component {
 }
 
 signup.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  UI: PropTypes.object.isRequired,
+  signupUser: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(signup);
+const mapStateToProps = state => ({
+  user: state.user,
+  UI: state.UI
+});
+
+export default connect(
+  mapStateToProps,
+  { signupUser }
+)(withStyles(styles)(signup));

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Pic from "../images/Pic.jpg";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 //material ui
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -16,6 +15,10 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 //bring grid
 import Grid from "@material-ui/core/Grid";
+
+//redux
+import { connect } from "react-redux";
+import { loginUser } from "../redux/actions/userAction";
 
 const styles = {
   //classes.these atributes
@@ -53,39 +56,23 @@ class login extends Component {
     this.state = {
       email: "",
       password: "",
-      loading: false,
       errors: {}
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.UI.errors) this.setState({ errors: nextProps.UI.errors }); //get errors and set them to local state
+  }
+
   handleSubmit = event => {
     event.preventDefault();
-    this.setState({
-      loading: true
-    });
 
     const userData = {
       email: this.state.email,
       password: this.state.password
     };
 
-    axios
-      .post("http://localhost:5000/user/login", userData)
-      .then(res => {
-        console.log(res.data);
-        localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`); //when we get token res.data we need to store it locally if something happen to connection
-
-        this.setState({
-          loading: false
-        });
-        this.props.history.push("/"); //use in react to push a url and got to that path
-      })
-      .catch(err => {
-        this.setState({
-          errors: err.response.data,
-          loading: false
-        });
-      });
+    this.props.loginUser(userData, this.props.history);
   };
 
   handleChange = event => {
@@ -95,8 +82,11 @@ class login extends Component {
   };
 
   render() {
-    const { classes } = this.props;
-    const { errors, loading } = this.state;
+    const {
+      classes,
+      UI: { loading }
+    } = this.props;
+    const { errors } = this.state;
 
     return (
       <Grid container spacing={10} className={classes.form}>
@@ -163,7 +153,28 @@ class login extends Component {
 }
 
 login.propTypes = {
-  classes: PropTypes.object.isRequired
+  //propTypes used for Typechecking purposes ..will be easy in near future not now though
+  // You can chain any of the above with `isRequired` to make sure a warning
+  // is shown if the prop isn't provided.
+
+  classes: PropTypes.object.isRequired,
+  loginUser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  UI: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(login);
+//from global state
+const mapStateToProps = state => ({
+  user: state.user,
+  UI: state.UI //objects
+});
+
+//which action we use
+const mapActionToProps = {
+  loginUser //function
+};
+
+export default connect(
+  mapStateToProps,
+  mapActionToProps
+)(withStyles(styles)(login));

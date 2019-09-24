@@ -15,8 +15,11 @@ import Navbar from "./Components/Navbar";
 import AuthRoute from "./util/AuthRoute";
 
 //redux
-// import { Provider } from "react-redux";
-// import store from "./redux/store";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import { SET_AUTHENTICATED } from "./redux/types";
+import { logoutUser, getUserData } from "./redux/actions/userAction";
+import axios from "axios";
 
 const theme = createMuiTheme({
   palette: {
@@ -39,48 +42,36 @@ const theme = createMuiTheme({
 });
 
 const token = localStorage.FBIdToken;
-let authenticated = false;
 
-console.log("hello1", token);
 if (token) {
   //decode firebase token to set expiry date
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
+    store.dispatch(logoutUser());
     window.location.href = "/login";
-    authenticated = false;
   } else {
-    authenticated = true;
+    store.dispatch({ type: SET_AUTHENTICATED });
+    axios.defaults.headers.common["Authorization"] = token;
+    store.dispatch(getUserData());
   }
 }
-
-console.log("hello2", authenticated);
 
 class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <div className="App">
+        <Provider store={store}>
           <Router>
             <Navbar />
             <div className="container">
               <Switch>
                 <Route exact path="/" component={home} />
-                <AuthRoute
-                  exact
-                  path="/login"
-                  component={login}
-                  authenticated={authenticated}
-                />
-                <AuthRoute
-                  exact
-                  path="/signup"
-                  component={signup}
-                  authenticated={authenticated}
-                />
+                <AuthRoute exact path="/login" component={login} />
+                <AuthRoute exact path="/signup" component={signup} />
               </Switch>
             </div>
           </Router>
-        </div>
+        </Provider>
       </MuiThemeProvider>
     );
   }
