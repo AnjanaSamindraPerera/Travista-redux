@@ -1,56 +1,56 @@
-import React, { Component } from "react";
-import Pic from "../images/Pic.jpg";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import Pic from '../images/Pic.jpg';
+import { Link } from 'react-router-dom';
 
 //material ui
-import withStyles from "@material-ui/core/styles/withStyles";
+import withStyles from '@material-ui/core/styles/withStyles';
 //import clsx from 'clsx';
 //import { makeStyles } from '@material-ui/core/styles';
 //import MenuItem from '@material-ui/core/MenuItem';
-import TextField from "@material-ui/core/TextField";
-import PropTypes from "prop-types";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import TextField from '@material-ui/core/TextField';
+import PropTypes from 'prop-types';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 //bring grid
-import Grid from "@material-ui/core/Grid";
+import Grid from '@material-ui/core/Grid';
 
 //redux
-import { connect } from "react-redux";
-import { signupUser } from "../redux/actions/userAction";
+import { connect } from 'react-redux';
+import { signupUser } from '../redux/actions/userAction';
 
 const styles = {
   //classes.these atributes
 
   form: {
-    textAlign: "center"
+    textAlign: 'center'
   },
   pageTittle: {
     // color:'#43a047',
-    margin: "20px auto 20px auto"
+    margin: '20px auto 20px auto'
   },
   image: {
-    margin: "20px auto 20px auto"
+    margin: '20px auto 20px auto'
   },
   textField: {
-    margin: "10px auto 10px auto"
+    margin: '10px auto 10px auto'
   },
   button: {
     marginTop: 20,
-    position: "relative"
+    position: 'relative'
   },
   customError: {
-    color: "red",
-    fontSize: "0.8rem",
+    color: 'red',
+    fontSize: '0.8rem',
     marginTop: 10
   },
   progress: {
-    position: "absolute"
+    position: 'absolute'
   },
   formControl: {
     marginTop: 20,
@@ -64,12 +64,12 @@ class signup extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: "",
-      confirmPassword: "",
-      handle: "", //name
+      email: '',
+      password: '',
+      confirmPassword: '',
+      handle: '', //name
 
-      category: "",
+      category: '',
       errors: {}
     };
   }
@@ -177,13 +177,13 @@ class signup extends Component {
                 value={this.state.category}
                 onChange={this.handleChange}
                 inputProps={{
-                  name: "category",
-                  id: "category-simple"
+                  name: 'category',
+                  id: 'category-simple'
                 }}
               >
                 <MenuItem value={1}>Hotel</MenuItem>
                 <MenuItem value={2}>Driver</MenuItem>
-                <MenuItem value={3}>Other</MenuItem>
+                <MenuItem value={3}>Business </MenuItem>
               </Select>
             </FormControl>
 

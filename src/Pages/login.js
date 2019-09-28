@@ -1,52 +1,52 @@
-import React, { Component } from "react";
-import Pic from "../images/Pic.jpg";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import Pic from '../images/Pic.jpg';
+import { Link } from 'react-router-dom';
 
 //material ui
-import withStyles from "@material-ui/core/styles/withStyles";
+import withStyles from '@material-ui/core/styles/withStyles';
 //import clsx from 'clsx';
 //import { makeStyles } from '@material-ui/core/styles';
 //import MenuItem from '@material-ui/core/MenuItem';
-import TextField from "@material-ui/core/TextField";
-import PropTypes from "prop-types";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import TextField from '@material-ui/core/TextField';
+import PropTypes from 'prop-types';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 //bring grid
-import Grid from "@material-ui/core/Grid";
+import Grid from '@material-ui/core/Grid';
 
 //redux
-import { connect } from "react-redux";
-import { loginUser } from "../redux/actions/userAction";
+import { connect } from 'react-redux';
+import { loginUser } from '../redux/actions/userAction';
 
 const styles = {
   //classes.these atributes
 
   form: {
-    textAlign: "center"
+    textAlign: 'center'
   },
   pageTittle: {
     // color:'#43a047',
-    margin: "20px auto 20px auto"
+    margin: '20px auto 20px auto'
   },
   image: {
-    margin: "20px auto 20px auto"
+    margin: '20px auto 20px auto'
   },
   textField: {
-    margin: "10px auto 10px auto"
+    margin: '10px auto 10px auto'
   },
   button: {
     marginTop: 20,
-    position: "relative"
+    position: 'relative'
   },
   customError: {
-    color: "red",
-    fontSize: "0.8rem",
+    color: 'red',
+    fontSize: '0.8rem',
     marginTop: 10
   },
   progress: {
-    position: "absolute"
+    position: 'absolute'
   }
 };
 
@@ -54,8 +54,8 @@ class login extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       errors: {}
     };
   }

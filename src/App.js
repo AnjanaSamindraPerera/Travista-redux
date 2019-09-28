@@ -1,39 +1,42 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
-import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
-import jwtDecode from "jwt-decode";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './App.css';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import jwtDecode from 'jwt-decode';
 
 //pages
-import home from "./Pages/home";
-import login from "./Pages/login";
-import signup from "./Pages/signup";
+import home from './Pages/home';
+import login from './Pages/login';
+import signup from './Pages/signup';
 
 //components
-import Navbar from "./Components/Navbar";
-import AuthRoute from "./util/AuthRoute";
+import Navbar from './Components/Navbar';
+import AuthRoute from './util/AuthRoute';
 
 //redux
-import { Provider } from "react-redux";
-import store from "./redux/store";
-import { SET_AUTHENTICATED } from "./redux/types";
-import { logoutUser, getUserData } from "./redux/actions/userAction";
-import axios from "axios";
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import { SET_AUTHENTICATED } from './redux/types';
+import { logoutUser, getUserData } from './redux/actions/userAction';
+import axios from 'axios';
+// import themeObject from './util/theme';
+
+// const theme = createMuiTheme(themeObject);
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: "#33c9dc",
-      main: "#00bcd4", //color primary have this  //green-#43a047
-      dark: "#008394",
-      contrastText: "#fff" //text color on element
+      light: '#33c9dc',
+      main: '#00bcd4', //color primary have this  //green-#43a047
+      dark: '#008394',
+      contrastText: '#fff' //text color on element
     },
     secondary: {
-      light: "#ff6333",
-      main: "#ff3d00", //color secondary have this
-      dark: "#b22a00",
-      contrastText: "#fff"
+      light: '#ff6333',
+      main: '#ff3d00', //color secondary have this
+      dark: '#b22a00',
+      contrastText: '#fff'
     }
   },
   typography: {
@@ -48,10 +51,10 @@ if (token) {
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
     store.dispatch(logoutUser());
-    window.location.href = "/login";
+    window.location.href = '/login';
   } else {
     store.dispatch({ type: SET_AUTHENTICATED });
-    axios.defaults.headers.common["Authorization"] = token;
+    axios.defaults.headers.common['Authorization'] = token;
     store.dispatch(getUserData());
   }
 }
