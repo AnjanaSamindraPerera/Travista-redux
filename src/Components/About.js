@@ -85,7 +85,7 @@ class Profile extends Component {
           <div className={classes.profile}>
             <hr />
             <div className="profile-details">
-              <PublicIcon color="black" />
+              <PublicIcon color="action" />
               <b>Intro</b>
               <hr />
               {bio && <Typography variant="body2">{bio}</Typography>}

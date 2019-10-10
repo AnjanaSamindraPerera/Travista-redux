@@ -75,7 +75,7 @@ class Profile extends Component {
   };
 
   handleImageChange = event => {
-    console.log('in cover1');
+    // console.log('in cover1');
     const image = event.target.files[0];
     const formData = new FormData();
     formData.append('image', image, image.name);
