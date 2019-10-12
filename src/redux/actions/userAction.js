@@ -56,6 +56,7 @@ export const signupUser = (newUserData, history) => dispatch => {
 export const logoutUser = () => dispatch => {
   localStorage.removeItem('FBIdToken'); //delete local storage auth header
   delete axios.defaults.headers.common['Authorization']; //delete axios auth  header
+  window.location.href = '/login';
   dispatch({ type: SET_UNAUTHENTICATED });
 };
 

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import MyButton from '../util/MyButton';
+
 //redux
 import { connect } from 'react-redux';
 
@@ -11,9 +12,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
 //icons
-import AddIcon from '@material-ui/icons/Add';
 import HomeIcon from '@material-ui/icons/Home';
 import Notifications from '@material-ui/icons/Notifications';
+import PostAd from './PostAd';
+import PostAdImage from './PostAdImage';
+import PostAdWithImg from './PostAdWithImg';
 
 class Navbar extends Component {
   render() {
@@ -23,9 +26,9 @@ class Navbar extends Component {
         <Toolbar className="nav-container">
           {authenticated ? (
             <Fragment>
-              <MyButton tip="Create a Advertisment">
-                <AddIcon />
-              </MyButton>
+              <PostAdWithImg />
+              <PostAdImage />
+              <PostAd />
 
               <Link to="/">
                 <MyButton tip="Home">

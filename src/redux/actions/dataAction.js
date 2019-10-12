@@ -1,4 +1,14 @@
-import { SET_ADS, LOADING_DATA, LIKE_AD, UNLIKE_AD, DELETE_AD } from '../types';
+import {
+  SET_ADS,
+  LOADING_DATA,
+  LIKE_AD,
+  UNLIKE_AD,
+  DELETE_AD,
+  LOADING_UI,
+  SET_ERRORS,
+  CLEAR_ERRORS,
+  POST_AD
+} from '../types';
 import axios from 'axios';
 
 //get all advertisments
@@ -56,4 +66,63 @@ export const deleteAd = adId => dispatch => {
       dispatch({ type: DELETE_AD, payload: adId });
     })
     .catch(err => console.log(err));
+};
+
+//post ad body
+export const postAd = newAd => dispatch => {
+  dispatch({ type: LOADING_UI });
+
+  axios
+    .post('/ad', newAd)
+    .then(res => {
+      dispatch({
+        type: POST_AD,
+        payload: res.data
+      });
+      dispatch({ type: CLEAR_ERRORS });
+    })
+    .catch(err => {
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
+    });
+};
+
+//clear errors
+export const clearErrors = () => dispatch => {
+  dispatch({ type: CLEAR_ERRORS });
+};
+
+//post only advertisment image
+export const uploadAdImage = formData => dispatch => {
+  dispatch({ type: LOADING_UI });
+  console.log('in uploadAdImage function');
+  axios
+    .post('/adImage', formData)
+    .then(res => {
+      dispatch({
+        type: POST_AD,
+        payload: res.data
+      });
+      dispatch({ type: CLEAR_ERRORS });
+    })
+    .catch(err => {
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
+    });
+};
+
+//post advertisment caption+image
+export const postAdWithImage = formData => dispatch => {
+  dispatch({ type: LOADING_UI });
+  console.log('in post ad with image function');
+  axios
+    .post('/advertisment', formData)
+    .then(res => {
+      dispatch({
+        type: POST_AD,
+        payload: res.data
+      });
+      dispatch({ type: CLEAR_ERRORS });
+    })
+    .catch(err => {
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
+    });
 };

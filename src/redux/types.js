@@ -16,3 +16,4 @@ export const SET_AD = 'SET_AD';
 export const LIKE_AD = 'LIKE_AD';
 export const UNLIKE_AD = 'UNLIKE_AD';
 export const DELETE_AD = 'DELETE_AD';
+export const POST_AD = 'POST_AD';

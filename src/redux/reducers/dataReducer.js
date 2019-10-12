@@ -1,4 +1,11 @@
-import { SET_ADS, LIKE_AD, UNLIKE_AD, LOADING_DATA, DELETE_AD } from '../types';
+import {
+  SET_ADS,
+  LIKE_AD,
+  UNLIKE_AD,
+  LOADING_DATA,
+  DELETE_AD,
+  POST_AD
+} from '../types';
 
 const initialState = {
   ads: [], //all ads
@@ -32,6 +39,12 @@ export default function(state = initialState, action) {
       return {
         ...state
       };
+    case POST_AD:
+      return {
+        ...state,
+        ads: [action.payload, ...state.ads]
+      };
+
     default:
       return state;
   }

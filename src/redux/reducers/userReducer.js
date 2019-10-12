@@ -12,7 +12,8 @@ const initialState = {
   loading: false,
   credentials: {},
   likes: [],
-  notifications: []
+  notifications: [],
+  reviews: []
 };
 
 export default function(state = initialState, action) {
