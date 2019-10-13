@@ -34,19 +34,26 @@ export class home extends Component {
 
   render() {
     const { ads, loading } = this.props.data;
+    const { reviews } = this.props.user;
 
-    let recentScreamsMarkup = this.state.screams ? (
-      this.state.screams.map(scream => (
-        <Review key={scream.screamId} scream={scream} />
-      ))
-    ) : (
-      <p>Loading...</p>
-    );
+    // let recentScreamsMarkup = this.state.screams ? (
+    //   this.state.screams.map(scream => (
+    //     <Review key={scream.screamId} scream={scream} />
+    //   ))
+    // ) : (
+    //   <p>Loading...</p>
+    // );
 
     let recentAdsMarkup = !loading ? (
       ads.map(ad => <Ad key={ad.adId} ad={ad} />)
     ) : (
       <h1>Loading..</h1>
+    );
+
+    let recentReviewsMarkup = !loading ? (
+      reviews.map(review => <Review key={review.reviewId} review={review} />)
+    ) : (
+      <p>loading ...</p>
     );
 
     return (
@@ -64,7 +71,8 @@ export class home extends Component {
             <p>Post advertisments</p>
           </Grid> */}
           <Grid item sm={8} xs={12}>
-            {recentScreamsMarkup}
+            {/* {recentScreamsMarkup} */}
+            {recentReviewsMarkup}
           </Grid>
           <Grid item sm={4} xs={12}>
             <About />
@@ -81,11 +89,13 @@ export class home extends Component {
 
 home.propTypes = {
   getAds: PropTypes.func.isRequired,
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  data: state.data
+  data: state.data,
+  user: state.user
 });
 
 export default connect(
