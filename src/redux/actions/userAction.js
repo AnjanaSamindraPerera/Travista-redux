@@ -4,7 +4,8 @@ import {
   CLEAR_ERRORS,
   LOADING_UI,
   SET_UNAUTHENTICATED,
-  LOADING_USER
+  LOADING_USER,
+  NOTIFICATIONS_READ
 } from '../types';
 import axios from 'axios';
 
@@ -112,4 +113,16 @@ const setAuthorizationHeader = token => {
   localStorage.setItem('FBIdToken', FBIdToken); //when we get token res.data we need to store it locally if something happen to connection
 
   axios.defaults.headers.common['Authorization'] = FBIdToken; //add authorizatio header to authenicated routes
+};
+
+//read notifications
+export const markNotificationsRead = notificationIds => dispatch => {
+  axios
+    .post('/notification', notificationIds)
+    .then(res => {
+      dispatch({
+        type: NOTIFICATIONS_READ
+      });
+    })
+    .catch(err => console.log(err));
 };
