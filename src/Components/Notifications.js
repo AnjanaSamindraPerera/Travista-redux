@@ -83,7 +83,7 @@ class Notifications extends Component {
                 variant="body1"
                 to={`/`}
               >
-                {not.sender} {verb} your scream {time}
+                {not.sender} {verb} your advertisment {time}
               </Typography>
             </MenuItem>
           );

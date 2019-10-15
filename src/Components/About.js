@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
-
+import AboutSkeleton from '../util/skeltons/AboutSkelton';
 import EditAbout from './EditAbout';
 //MUI stuff
 import Button from '@material-ui/core/Button';
@@ -13,7 +13,6 @@ import Paper from '@material-ui/core/Paper';
 //icons
 import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
-
 import LocalPhoneIcon from '@material-ui/icons/LocalPhone';
 import PublicIcon from '@material-ui/icons/Public';
 
@@ -146,7 +145,7 @@ class Profile extends Component {
         </Paper>
       )
     ) : (
-      <p>loading...</p>
+      <AboutSkeleton />
     );
 
     return profileMarkup;

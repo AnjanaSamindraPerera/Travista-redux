@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
-
+import CoverSkeleton from '../util/skeltons/CoverSkelton';
 //MUI stuff
 import Button from '@material-ui/core/Button';
 
@@ -68,7 +68,7 @@ const styles = theme => ({
   }
 }); //wrap around () to return from function straight away
 
-class Profile extends Component {
+class Cover extends Component {
   handleEditPicture = () => {
     const fileInput = document.getElementById('imageInput');
     fileInput.click();
@@ -152,14 +152,14 @@ class Profile extends Component {
         </Paper>
       )
     ) : (
-      <p>loading...</p>
+      <CoverSkeleton />
     );
 
     return profileMarkup;
   }
 }
 
-Profile.propTypes = {
+Cover.propTypes = {
   user: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   logoutUser: PropTypes.func.isRequired,
@@ -174,4 +174,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(withStyles(styles)(Profile));
+)(withStyles(styles)(Cover));
