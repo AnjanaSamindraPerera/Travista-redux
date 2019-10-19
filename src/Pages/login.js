@@ -142,8 +142,13 @@ class login extends Component {
               )}
             </Button>
             <br />
+            <br />
             <small>
               don't have an account ?sign up <Link to="/signup">here</Link>
+            </small>
+            <br />
+            <small>
+              Forgot your password?click <Link to="/login">here</Link>
             </small>
           </form>
         </Grid>
