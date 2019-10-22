@@ -5,7 +5,10 @@ import {
   LOADING_UI,
   SET_UNAUTHENTICATED,
   LOADING_USER,
-  NOTIFICATIONS_READ
+  NOTIFICATIONS_READ,
+  FORGOT_PASSWORD,
+  SET_MESSAGES,
+  CLEAR_MESSAGES
 } from '../types';
 import axios from 'axios';
 
@@ -125,4 +128,29 @@ export const markNotificationsRead = notificationIds => dispatch => {
       });
     })
     .catch(err => console.log(err));
+};
+
+//recover password
+export const recoverPassword = data => dispatch => {
+  axios
+    .post('/user/reset', data)
+    .then(res => {
+      dispatch({ type: CLEAR_ERRORS });
+
+      dispatch({
+        type: FORGOT_PASSWORD,
+        payload: res.data
+      });
+      dispatch({
+        type: SET_MESSAGES,
+        payload: res.data //to global state
+      });
+      dispatch({ type: CLEAR_MESSAGES });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data //to global state
+      });
+    });
 };

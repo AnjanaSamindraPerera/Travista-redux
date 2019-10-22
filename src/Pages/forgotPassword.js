@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Pic from '../images/Pic.jpg';
-import { Link } from 'react-router-dom';
 
 //material ui
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -12,13 +11,13 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import Box from '@material-ui/core/Box';
 //bring grid
 import Grid from '@material-ui/core/Grid';
 
 //redux
 import { connect } from 'react-redux';
-import { loginUser } from '../redux/actions/userAction';
+import { recoverPassword } from '../redux/actions/userAction';
 
 const styles = {
   //classes.these atributes
@@ -45,34 +44,40 @@ const styles = {
     fontSize: '0.8rem',
     marginTop: 10
   },
+  customSuccess: {
+    color: 'green',
+    fontSize: '0.8rem',
+    marginTop: 10
+  },
   progress: {
     position: 'absolute'
   }
 };
 
-class login extends Component {
+class forgotPassword extends Component {
   constructor() {
     super();
     this.state = {
       email: '',
-      password: '',
-      errors: {}
+      errors: {},
+      messages: {}
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) this.setState({ errors: nextProps.UI.errors }); //get errors and set them to local state
+    if (nextProps.UI.messages)
+      this.setState({ messages: nextProps.UI.messages }); //get messages and set them to local state
   }
 
   handleSubmit = event => {
     event.preventDefault();
 
     const userData = {
-      email: this.state.email,
-      password: this.state.password
+      email: this.state.email
     };
 
-    this.props.loginUser(userData, this.props.history);
+    this.props.recoverPassword(userData);
   };
 
   handleChange = event => {
@@ -87,6 +92,7 @@ class login extends Component {
       UI: { loading }
     } = this.props;
     const { errors } = this.state;
+    const { messages } = this.state;
 
     return (
       <Grid container spacing={10} className={classes.form}>
@@ -95,8 +101,20 @@ class login extends Component {
         </Grid>
 
         <Grid item sm>
+          <br />
+          <br />
+          <br />
+
           <Typography variant="h2" className={classes.pageTittle}>
-            Login
+            Forgot Password
+          </Typography>
+          <br />
+
+          <Typography className={classes.pageTittle}>
+            <Box fontWeight="fontWeightBold" fontStyle="oblique" m={1}>
+              We will send you an email with instructions on how to reset your
+              password.
+            </Box>
           </Typography>
           <form noValidate onSubmit={this.handleSubmit}>
             <TextField
@@ -111,18 +129,7 @@ class login extends Component {
               error={errors.email ? true : false}
               fullWidth
             />
-            <TextField
-              id="password"
-              type="password"
-              name="password"
-              label="Password"
-              className={classes.textField}
-              value={this.state.password}
-              onChange={this.handleChange}
-              helperText={errors.password}
-              error={errors.password ? true : false}
-              fullWidth
-            />
+
             {errors.general && (
               <Typography variant="body2" className={classes.customError}>
                 {errors.general}
@@ -136,20 +143,18 @@ class login extends Component {
               className={classes.button}
               disabled={loading}
             >
-              Login
+              Email Me
               {loading && (
                 <CircularProgress size={30} className={classes.progress} />
               )}
             </Button>
             <br />
             <br />
-            <small>
-              don't have an account ?sign up <Link to="/signup">here</Link>
-            </small>
-            <br />
-            <small>
-              Forgot your password? <Link to="/forgotPassword">click here</Link>
-            </small>
+            {messages.message && (
+              <Typography variant="h2" className={classes.customSuccess}>
+                {messages.message}
+              </Typography>
+            )}
           </form>
         </Grid>
       </Grid>
@@ -157,13 +162,13 @@ class login extends Component {
   }
 }
 
-login.propTypes = {
+forgotPassword.propTypes = {
   //propTypes used for Typechecking purposes ..will be easy in near future not now though
   // You can chain any of the above with `isRequired` to make sure a warning
   // is shown if the prop isn't provided.
 
   classes: PropTypes.object.isRequired,
-  loginUser: PropTypes.func.isRequired,
+  recoverPassword: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   UI: PropTypes.object.isRequired
 };
@@ -176,10 +181,10 @@ const mapStateToProps = state => ({
 
 //which action we use
 const mapActionToProps = {
-  loginUser //function
+  recoverPassword //function
 };
 
 export default connect(
   mapStateToProps,
   mapActionToProps
-)(withStyles(styles)(login));
+)(withStyles(styles)(forgotPassword));

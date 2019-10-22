@@ -5,7 +5,8 @@ import {
   LOADING_USER,
   LIKE_AD,
   UNLIKE_AD,
-  NOTIFICATIONS_READ
+  NOTIFICATIONS_READ,
+  FORGOT_PASSWORD
 } from '../types';
 
 const initialState = {
@@ -56,6 +57,10 @@ export default function(state = initialState, action) {
 
     case NOTIFICATIONS_READ:
       state.notifications.forEach(n => (n.read = true));
+      return {
+        ...state
+      };
+    case FORGOT_PASSWORD:
       return {
         ...state
       };
