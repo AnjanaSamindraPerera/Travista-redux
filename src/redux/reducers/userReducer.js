@@ -6,7 +6,8 @@ import {
   LIKE_AD,
   UNLIKE_AD,
   NOTIFICATIONS_READ,
-  FORGOT_PASSWORD
+  FORGOT_PASSWORD,
+  CHANGE_PASSWORD
 } from '../types';
 
 const initialState = {
@@ -61,6 +62,10 @@ export default function(state = initialState, action) {
         ...state
       };
     case FORGOT_PASSWORD:
+      return {
+        ...state
+      };
+    case CHANGE_PASSWORD:
       return {
         ...state
       };

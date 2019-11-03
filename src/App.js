@@ -9,7 +9,9 @@ import jwtDecode from 'jwt-decode';
 import home from './Pages/home';
 import login from './Pages/login';
 import signup from './Pages/signup';
+import settings from './Pages/settings';
 import forgotPassword from './Pages/forgotPassword';
+import settingsPassword from './Pages/settingsPassword';
 
 //components
 import Navbar from './Components/Navbar';
@@ -76,6 +78,12 @@ class App extends Component {
                   exact
                   path="/forgotPassword"
                   component={forgotPassword}
+                />
+                <Route exact path="/settings" component={settings} />
+                <Route
+                  exact
+                  path="/settingsPassword"
+                  component={settingsPassword}
                 />
               </Switch>
             </div>

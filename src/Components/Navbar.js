@@ -18,6 +18,7 @@ import PostAd from './PostAd';
 import PostAdImage from './PostAdImage';
 import PostAdWithImg from './PostAdWithImg';
 import Notifications from './Notifications';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 class Navbar extends Component {
   render() {
@@ -37,9 +38,13 @@ class Navbar extends Component {
                 </MyButton>
               </Link>
 
-              {/* <MyButton tip="Notifications"> */}
               <Notifications />
-              {/* </MyButton> */}
+
+              <Link to="/settings">
+                <MyButton tip="Settings">
+                  <SettingsIcon />
+                </MyButton>
+              </Link>
             </Fragment>
           ) : (
             <Fragment>

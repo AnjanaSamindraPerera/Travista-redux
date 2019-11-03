@@ -8,7 +8,8 @@ import {
   NOTIFICATIONS_READ,
   FORGOT_PASSWORD,
   SET_MESSAGES,
-  CLEAR_MESSAGES
+  CLEAR_MESSAGES,
+  CHANGE_PASSWORD
 } from '../types';
 import axios from 'axios';
 
@@ -139,6 +140,31 @@ export const recoverPassword = data => dispatch => {
 
       dispatch({
         type: FORGOT_PASSWORD,
+        payload: res.data
+      });
+      dispatch({
+        type: SET_MESSAGES,
+        payload: res.data //to global state
+      });
+      dispatch({ type: CLEAR_MESSAGES });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data //to global state
+      });
+    });
+};
+
+//change password
+export const changePassword = data => dispatch => {
+  axios
+    .post('/user/change', data)
+    .then(res => {
+      dispatch({ type: CLEAR_ERRORS });
+
+      dispatch({
+        type: CHANGE_PASSWORD,
         payload: res.data
       });
       dispatch({

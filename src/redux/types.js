@@ -5,6 +5,7 @@ export const SET_USER = 'SET_USER';
 export const LOADING_USER = 'LOADING_USER';
 export const NOTIFICATIONS_READ = 'NOTIFICATIONS_READ';
 export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
+export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 
 //UI reducer types
 export const SET_ERRORS = 'SET_ERRORS';
