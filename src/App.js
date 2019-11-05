@@ -12,6 +12,8 @@ import signup from './Pages/signup';
 import settings from './Pages/settings';
 import forgotPassword from './Pages/forgotPassword';
 import settingsPassword from './Pages/settingsPassword';
+import settingsEmail from './Pages/settingsEmail';
+import settingsDelete from './Pages/settingsDelete';
 
 //components
 import Navbar from './Components/Navbar';
@@ -85,6 +87,12 @@ class App extends Component {
                   path="/settingsPassword"
                   component={settingsPassword}
                 />
+                <Route
+                  exact
+                  path="/settingsDelete"
+                  component={settingsDelete}
+                />
+                <Route exact path="/settingsEmail" component={settingsEmail} />
               </Switch>
             </div>
           </Router>

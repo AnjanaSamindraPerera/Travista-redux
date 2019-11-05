@@ -7,7 +7,9 @@ import {
   UNLIKE_AD,
   NOTIFICATIONS_READ,
   FORGOT_PASSWORD,
-  CHANGE_PASSWORD
+  CHANGE_PASSWORD,
+  CHANGE_EMAIL,
+  DELETE_USER
 } from '../types';
 
 const initialState = {
@@ -69,6 +71,15 @@ export default function(state = initialState, action) {
       return {
         ...state
       };
+    case CHANGE_EMAIL:
+      return {
+        ...state
+      };
+    case DELETE_USER: {
+      return {
+        ...state
+      };
+    }
     default:
       return state;
   }

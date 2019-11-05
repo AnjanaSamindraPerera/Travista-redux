@@ -6,6 +6,8 @@ export const LOADING_USER = 'LOADING_USER';
 export const NOTIFICATIONS_READ = 'NOTIFICATIONS_READ';
 export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
 export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
+export const CHANGE_EMAIL = 'CHANGE_EMAIL';
+export const DELETE_USER = 'DELETE_USER';
 
 //UI reducer types
 export const SET_ERRORS = 'SET_ERRORS';

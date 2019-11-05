@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
 import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Paper from '@material-ui/core/Paper';
-//icons
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+
+// import Drawer from '@material-ui/core/Drawer';
+
+//mui-icons
+import IconButton from '@material-ui/core/IconButton';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
@@ -21,6 +14,10 @@ import MailIcon from '@material-ui/icons/Mail';
 import { withStyles } from '@material-ui/styles';
 import { MenuList, MenuItem } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+
+//redux
+import { connect } from 'react-redux';
+import { logoutUser } from '../redux/actions/userAction';
 
 const drawerWidth = 240;
 
@@ -49,6 +46,9 @@ const styles = {
 };
 
 class Sidebar extends Component {
+  handleLogout = () => {
+    this.props.logoutUser();
+  };
   render() {
     const classes = this.props;
     return (
@@ -79,7 +79,7 @@ class Sidebar extends Component {
           <MenuItem component={Link} to="/settingsPassword">
             <VpnKeyIcon /> Change Password
           </MenuItem>
-          <MenuItem component={Link} to="/settingsAcc">
+          <MenuItem component={Link} to="/settingsDelete">
             <DeleteForeverIcon /> Delete Account
           </MenuItem>
         </MenuList>
@@ -107,8 +107,11 @@ class Sidebar extends Component {
         </List> */}
         {/* </Drawer> */}
         <MenuList>
-          <MenuItem component={Link} to="/settingsLogout">
-            <ExitToAppIcon /> Logout
+          <MenuItem>
+            <IconButton onClick={this.handleLogout}>
+              <ExitToAppIcon />
+              Logout
+            </IconButton>
           </MenuItem>
         </MenuList>
       </div>
@@ -116,4 +119,18 @@ class Sidebar extends Component {
   }
 }
 
-export default withStyles(styles)(Sidebar);
+Sidebar.propTypes = {
+  user: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+  logoutUser: PropTypes.func.isRequired
+};
+
+const mapActionsToProps = { logoutUser };
+
+const mapStateToProps = state => ({
+  user: state.user
+});
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(withStyles(styles)(Sidebar));

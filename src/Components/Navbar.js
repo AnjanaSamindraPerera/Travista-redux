@@ -40,7 +40,7 @@ class Navbar extends Component {
 
               <Notifications />
 
-              <Link to="/settings">
+              <Link to="/settingsEmail">
                 <MyButton tip="Settings">
                   <SettingsIcon />
                 </MyButton>

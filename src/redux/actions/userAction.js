@@ -9,7 +9,9 @@ import {
   FORGOT_PASSWORD,
   SET_MESSAGES,
   CLEAR_MESSAGES,
-  CHANGE_PASSWORD
+  CHANGE_PASSWORD,
+  CHANGE_EMAIL,
+  DELETE_USER
 } from '../types';
 import axios from 'axios';
 
@@ -165,6 +167,56 @@ export const changePassword = data => dispatch => {
 
       dispatch({
         type: CHANGE_PASSWORD,
+        payload: res.data
+      });
+      dispatch({
+        type: SET_MESSAGES,
+        payload: res.data //to global state
+      });
+      dispatch({ type: CLEAR_MESSAGES });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data //to global state
+      });
+    });
+};
+
+//change email
+export const changeEmail = data => dispatch => {
+  axios
+    .post('/user/changeEmail', data)
+    .then(res => {
+      dispatch({ type: CLEAR_ERRORS });
+
+      dispatch({
+        type: CHANGE_EMAIL,
+        payload: res.data
+      });
+      dispatch({
+        type: SET_MESSAGES,
+        payload: res.data //to global state
+      });
+      dispatch({ type: CLEAR_MESSAGES });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data //to global state
+      });
+    });
+};
+
+//delete account
+export const deleteUser = data => dispatch => {
+  axios
+    .post('/user/deleteUser', data)
+    .then(res => {
+      dispatch({ type: CLEAR_ERRORS });
+
+      dispatch({
+        type: DELETE_USER,
         payload: res.data
       });
       dispatch({
