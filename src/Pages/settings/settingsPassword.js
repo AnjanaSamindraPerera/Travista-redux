@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Sidebar from '../Components/Sidebar';
+import Sidebar from '../../Components/Sidebar';
 //material ui
 import withStyles from '@material-ui/core/styles/withStyles';
 //import clsx from 'clsx';
@@ -16,7 +16,7 @@ import Grid from '@material-ui/core/Grid';
 
 //redux
 import { connect } from 'react-redux';
-import { changeEmail } from '../redux/actions/userAction';
+import { changePassword } from '../../redux/actions/userAction';
 
 const styles = {
   //classes.these atributes
@@ -53,12 +53,13 @@ const styles = {
   }
 };
 
-class settingsEmail extends Component {
+class settingsPassword extends Component {
   constructor() {
     super();
     this.state = {
       password: '',
-      email: '',
+      newPassword: '',
+      confirmPassword: '',
       errors: {},
       messages: {}
     };
@@ -75,10 +76,11 @@ class settingsEmail extends Component {
 
     const userData = {
       password: this.state.password,
-      email: this.state.email
+      newPassword: this.state.newPassword,
+      confirmPassword: this.state.confirmPassword
     };
 
-    this.props.changeEmail(userData);
+    this.props.changePassword(userData);
   };
 
   handleChange = event => {
@@ -104,7 +106,7 @@ class settingsEmail extends Component {
 
           <Grid item sm>
             <Typography variant="h2" className={classes.pageTittle}>
-              Change Email
+              Change Password
             </Typography>
             <br />
 
@@ -130,16 +132,30 @@ class settingsEmail extends Component {
               />
 
               <TextField
-                id="email"
-                type="text"
-                name="email"
-                label="email"
+                id="newPassword"
+                type="password"
+                name="newPassword"
+                label="New Password"
                 variant="outlined"
                 className={classes.textField}
-                value={this.state.email}
+                value={this.state.newPassword}
                 onChange={this.handleChange}
-                helperText={errors.email}
-                error={errors.email ? true : false}
+                helperText={errors.newPassword}
+                error={errors.newPassword ? true : false}
+                fullWidth
+              />
+
+              <TextField
+                id="confirmPassword"
+                type="password"
+                name="confirmPassword"
+                label="confirm Password"
+                variant="outlined"
+                className={classes.textField}
+                value={this.state.confirmPassword}
+                onChange={this.handleChange}
+                helperText={errors.confirmPassword}
+                error={errors.confirmPassword ? true : false}
                 fullWidth
               />
 
@@ -156,7 +172,7 @@ class settingsEmail extends Component {
                 className={classes.button}
                 disabled={loading}
               >
-                Change Email
+                Change Password
                 {loading && (
                   <CircularProgress size={30} className={classes.progress} />
                 )}
@@ -176,13 +192,13 @@ class settingsEmail extends Component {
   }
 }
 
-settingsEmail.propTypes = {
+settingsPassword.propTypes = {
   //propTypes used for Typechecking purposes ..will be easy in near future not now though
   // You can chain any of the above with `isRequired` to make sure a warning
   // is shown if the prop isn't provided.
 
   classes: PropTypes.object.isRequired,
-  changeEmail: PropTypes.func.isRequired,
+  changePassword: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   UI: PropTypes.object.isRequired
 };
@@ -195,10 +211,10 @@ const mapStateToProps = state => ({
 
 //which action we use
 const mapActionToProps = {
-  changeEmail //function
+  changePassword //function
 };
 
 export default connect(
   mapStateToProps,
   mapActionToProps
-)(withStyles(styles)(settingsEmail));
+)(withStyles(styles)(settingsPassword));

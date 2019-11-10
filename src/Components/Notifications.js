@@ -81,7 +81,7 @@ class Notifications extends Component {
                 component={Link}
                 color="initial"
                 variant="body1"
-                to={`/`}
+                to={`/user/${not.sender}/ad/${not.adId}`}
               >
                 {not.sender} {verb} your advertisment {time}
               </Typography>

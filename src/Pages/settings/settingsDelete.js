@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Sidebar from '../Components/Sidebar';
+import Sidebar from '../../Components/Sidebar';
 //material ui
 import withStyles from '@material-ui/core/styles/withStyles';
 //import clsx from 'clsx';
@@ -16,7 +16,7 @@ import Grid from '@material-ui/core/Grid';
 
 //redux
 import { connect } from 'react-redux';
-import { changePassword } from '../redux/actions/userAction';
+import { deleteUser } from '../../redux/actions/userAction';
 
 const styles = {
   //classes.these atributes
@@ -53,13 +53,12 @@ const styles = {
   }
 };
 
-class settingsPassword extends Component {
+class settingsDelete extends Component {
   constructor() {
     super();
     this.state = {
       password: '',
-      newPassword: '',
-      confirmPassword: '',
+      email: '',
       errors: {},
       messages: {}
     };
@@ -76,11 +75,10 @@ class settingsPassword extends Component {
 
     const userData = {
       password: this.state.password,
-      newPassword: this.state.newPassword,
-      confirmPassword: this.state.confirmPassword
+      email: this.state.email
     };
 
-    this.props.changePassword(userData);
+    this.props.deleteUser(userData);
   };
 
   handleChange = event => {
@@ -106,7 +104,7 @@ class settingsPassword extends Component {
 
           <Grid item sm>
             <Typography variant="h2" className={classes.pageTittle}>
-              Change Password
+              Delete Account
             </Typography>
             <br />
 
@@ -132,30 +130,16 @@ class settingsPassword extends Component {
               />
 
               <TextField
-                id="newPassword"
-                type="password"
-                name="newPassword"
-                label="New Password"
+                id="email"
+                type="text"
+                name="email"
+                label="email"
                 variant="outlined"
                 className={classes.textField}
-                value={this.state.newPassword}
+                value={this.state.email}
                 onChange={this.handleChange}
-                helperText={errors.newPassword}
-                error={errors.newPassword ? true : false}
-                fullWidth
-              />
-
-              <TextField
-                id="confirmPassword"
-                type="password"
-                name="confirmPassword"
-                label="confirm Password"
-                variant="outlined"
-                className={classes.textField}
-                value={this.state.confirmPassword}
-                onChange={this.handleChange}
-                helperText={errors.confirmPassword}
-                error={errors.confirmPassword ? true : false}
+                helperText={errors.email}
+                error={errors.email ? true : false}
                 fullWidth
               />
 
@@ -172,7 +156,7 @@ class settingsPassword extends Component {
                 className={classes.button}
                 disabled={loading}
               >
-                Change Password
+                Delete Account
                 {loading && (
                   <CircularProgress size={30} className={classes.progress} />
                 )}
@@ -192,13 +176,13 @@ class settingsPassword extends Component {
   }
 }
 
-settingsPassword.propTypes = {
+settingsDelete.propTypes = {
   //propTypes used for Typechecking purposes ..will be easy in near future not now though
   // You can chain any of the above with `isRequired` to make sure a warning
   // is shown if the prop isn't provided.
 
   classes: PropTypes.object.isRequired,
-  changePassword: PropTypes.func.isRequired,
+  deleteUser: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   UI: PropTypes.object.isRequired
 };
@@ -211,10 +195,10 @@ const mapStateToProps = state => ({
 
 //which action we use
 const mapActionToProps = {
-  changePassword //function
+  deleteUser //function
 };
 
 export default connect(
   mapStateToProps,
   mapActionToProps
-)(withStyles(styles)(settingsPassword));
+)(withStyles(styles)(settingsDelete));

@@ -4,7 +4,9 @@ import {
   UNLIKE_AD,
   LOADING_DATA,
   DELETE_AD,
-  POST_AD
+  POST_AD,
+  SET_AD,
+  SUBMIT_COMMENT
 } from '../types';
 
 const initialState = {
@@ -30,6 +32,11 @@ export default function(state = initialState, action) {
     case UNLIKE_AD:
       let index = state.ads.findIndex(ad => ad.adId === action.payload.adId); //find ad
       state.ads[index] = action.payload;
+      if (state.ad.adId === action.payload.adId) {
+        let temp = state.ad.comments;
+        state.ad = action.payload;
+        state.ad.comments = temp;
+      }
       return {
         ...state
       };
@@ -44,7 +51,19 @@ export default function(state = initialState, action) {
         ...state,
         ads: [action.payload, ...state.ads]
       };
-
+    case SET_AD:
+      return {
+        ...state,
+        ad: action.payload
+      };
+    case SUBMIT_COMMENT:
+      return {
+        ...state,
+        ad: {
+          ...state.ad,
+          comments: [action.payload, ...state.ad.comments]
+        }
+      };
     default:
       return state;
   }

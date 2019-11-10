@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Sidebar from '../Components/Sidebar';
+import Sidebar from '../../Components/Sidebar';
 //material ui
 import withStyles from '@material-ui/core/styles/withStyles';
 //import clsx from 'clsx';
@@ -16,7 +16,7 @@ import Grid from '@material-ui/core/Grid';
 
 //redux
 import { connect } from 'react-redux';
-import { deleteUser } from '../redux/actions/userAction';
+import { changeEmail } from '../../redux/actions/userAction';
 
 const styles = {
   //classes.these atributes
@@ -53,7 +53,7 @@ const styles = {
   }
 };
 
-class settingsDelete extends Component {
+class settingsEmail extends Component {
   constructor() {
     super();
     this.state = {
@@ -78,7 +78,7 @@ class settingsDelete extends Component {
       email: this.state.email
     };
 
-    this.props.deleteUser(userData);
+    this.props.changeEmail(userData);
   };
 
   handleChange = event => {
@@ -104,7 +104,7 @@ class settingsDelete extends Component {
 
           <Grid item sm>
             <Typography variant="h2" className={classes.pageTittle}>
-              Delete Account
+              Change Email
             </Typography>
             <br />
 
@@ -156,7 +156,7 @@ class settingsDelete extends Component {
                 className={classes.button}
                 disabled={loading}
               >
-                Delete Account
+                Change Email
                 {loading && (
                   <CircularProgress size={30} className={classes.progress} />
                 )}
@@ -176,13 +176,13 @@ class settingsDelete extends Component {
   }
 }
 
-settingsDelete.propTypes = {
+settingsEmail.propTypes = {
   //propTypes used for Typechecking purposes ..will be easy in near future not now though
   // You can chain any of the above with `isRequired` to make sure a warning
   // is shown if the prop isn't provided.
 
   classes: PropTypes.object.isRequired,
-  deleteUser: PropTypes.func.isRequired,
+  changeEmail: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   UI: PropTypes.object.isRequired
 };
@@ -195,10 +195,10 @@ const mapStateToProps = state => ({
 
 //which action we use
 const mapActionToProps = {
-  deleteUser //function
+  changeEmail //function
 };
 
 export default connect(
   mapStateToProps,
   mapActionToProps
-)(withStyles(styles)(settingsDelete));
+)(withStyles(styles)(settingsEmail));

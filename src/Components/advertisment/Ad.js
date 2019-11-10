@@ -3,10 +3,12 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import MyButton from '../util/MyButton';
-import { Link } from 'react-router-dom';
+import MyButton from '../../util/MyButton';
 import PropTypes from 'prop-types';
 import DeleteAd from './DeleteAd';
+import AdDialog from './AdDialog';
+import Like from './Like';
+
 //material-ui
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -14,15 +16,13 @@ import CardContent from '@material-ui/core/CardContent';
 
 //icons
 import ChatIcon from '@material-ui/icons/Chat';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+
 //style
 import './Ad.css';
 
 //redux
 
 import { connect } from 'react-redux';
-import { likeAd, unlikeAd } from '../redux/actions/dataAction';
 
 const styles = {
   card: {
@@ -40,25 +40,6 @@ const styles = {
 };
 
 class Ad extends Component {
-  likedAd = () => {
-    //check likedAds
-    if (
-      this.props.user.likes &&
-      this.props.user.likes.find(like => like.adId === this.props.ad.adId)
-    )
-      return true;
-    else return false;
-  };
-
-  likeAd = () => {
-    //methods to like and unlike
-    this.props.likeAd(this.props.ad.adId);
-  };
-
-  unlikeAd = () => {
-    this.props.unlikeAd(this.props.ad.adId);
-  };
-
   render() {
     dayjs.extend(relativeTime);
     const {
@@ -78,22 +59,6 @@ class Ad extends Component {
         credentials: { handle }
       }
     } = this.props;
-
-    const likeButton = !authenticated ? (
-      <MyButton tip="Like">
-        <Link to="/login">
-          <FavoriteBorder color="primary" />
-        </Link>
-      </MyButton>
-    ) : this.likedAd() ? (
-      <MyButton tip="undo like" onClick={this.unlikeAd}>
-        <FavoriteIcon color="primary" />
-      </MyButton>
-    ) : (
-      <MyButton tip="Like" onClick={this.likeAd}>
-        <FavoriteBorder color="primary" />
-      </MyButton>
-    );
 
     const deleteButton =
       authenticated && userHandle === handle ? <DeleteAd adId={adId} /> : null;
@@ -135,7 +100,8 @@ class Ad extends Component {
               />
             </div>
           </div>
-          {likeButton}
+
+          <Like adId={adId} />
           <span>{likeCount} Likes</span>
 
           <MyButton tip="comments">
@@ -143,6 +109,11 @@ class Ad extends Component {
           </MyButton>
 
           <span>{commentCount} comments</span>
+          <AdDialog
+            adId={adId}
+            userHandle={userHandle}
+            openDialog={this.props.openDialog}
+          />
         </CardContent>
       </Card>
     );
@@ -150,21 +121,17 @@ class Ad extends Component {
 }
 
 Ad.propTypes = {
-  likeAd: PropTypes.func.isRequired,
-  unlikeAd: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   ad: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  openDialog: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
   user: state.user
 });
 
-const mapActionsToprops = {
-  likeAd,
-  unlikeAd
-};
+const mapActionsToprops = {};
 
 export default connect(
   mapStateToProps,

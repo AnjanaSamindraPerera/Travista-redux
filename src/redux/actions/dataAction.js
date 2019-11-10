@@ -7,15 +7,19 @@ import {
   LOADING_UI,
   SET_ERRORS,
   CLEAR_ERRORS,
-  POST_AD
+  POST_AD,
+  SET_AD,
+  STOP_LOADING_UI,
+  SUBMIT_COMMENT
 } from '../types';
 import axios from 'axios';
 
-//get all advertisments
+//get all advertisments using '/ads'
+//get all advertisment specific to user '/service/getAds'
 export const getAds = () => dispatch => {
   dispatch({ type: LOADING_DATA });
   axios
-    .get('/ads')
+    .get('/service/getAds')
     .then(res => {
       // console.log(res);
       dispatch({
@@ -126,3 +130,31 @@ export const postAdWithImage = formData => dispatch => {
       dispatch({ type: SET_ERRORS, payload: err.response.data });
     });
 };
+
+//get one advertisment
+export const getAd = adId => dispatch => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .get(`/ad/${adId}`)
+    .then(res => {
+      dispatch({ type: SET_AD, payload: res.data });
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch(err => console.log(err));
+};
+
+//comment on ad
+export const submitComment = (adId, commentData) => dispatch => {
+  axios
+    .post(`/ad/${adId}/comment`, commentData)
+    .then(res => {
+      dispatch({ type: SUBMIT_COMMENT, payload: res.data });
+      dispatch(clearErrors());
+    })
+    .catch(err => {
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
+    });
+};
+
+//get specific user details
+export const getSpecificUserData = userHandle => {};

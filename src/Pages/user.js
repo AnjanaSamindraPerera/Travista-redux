@@ -37,18 +37,9 @@ export class home extends Component {
     //   <h1>Loading..</h1>
     // );
 
-    const recentAdsMarkup = loading ? (
-      <h1>Loading..</h1>
-    ) : ads === null ? (
-      <p>No ads from this user</p>
-    ) : !adIdParam ? (
-      ads.map(ad => <Ad key={ad.adId} ad={ad} />)
-    ) : (
-      ads.map(ad => {
-        if (ad.adId !== adIdParam) return <Ad key={ad.adId} ad={ad} />;
-        else return <Ad key={ad.adId} ad={ad} openDialog />;
-      })
-    );
+    const recentAdsMarkup = ads.map(ad => {
+      if (ad.adId === adIdParam) return <Ad key={ad.adId} ad={ad} openDialog />;
+    });
 
     let recentReviewsMarkup = !loading ? (
       reviews.map(review => <Review key={review.reviewId} review={review} />)
@@ -59,24 +50,22 @@ export class home extends Component {
     return (
       <div>
         <Grid container spacing={2}>
-          <Grid item sm={8} xs={12}>
+          {/* <Grid item sm={8} xs={12}>
             <Cover />
-          </Grid>
+          </Grid> */}
 
-          <Grid item sm={4} xs={12}>
+          {/* <Grid item sm={4} xs={12}>
             <Profile />
-          </Grid>
+          </Grid> */}
 
-          <Grid item sm={8} xs={12}>
+          {/* <Grid item sm={8} xs={12}>
             {recentReviewsMarkup}
-          </Grid>
-          <Grid item sm={4} xs={12}>
+          </Grid> */}
+          {/* <Grid item sm={4} xs={12}>
             <About />
-          </Grid>
+          </Grid> */}
 
-          <Grid item sm={8} xs={12}>
-            {recentAdsMarkup}
-          </Grid>
+          <Grid item>{recentAdsMarkup}</Grid>
         </Grid>
       </div>
     );

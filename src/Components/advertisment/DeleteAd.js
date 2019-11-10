@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 
 import PropTypes from 'prop-types';
 
@@ -14,7 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 //redux
 import { connect } from 'react-redux';
-import { deleteAd } from '../redux/actions/dataAction';
+import { deleteAd } from '../../redux/actions/dataAction';
 
 const styles = {};
 

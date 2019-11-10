@@ -7,13 +7,14 @@ import jwtDecode from 'jwt-decode';
 
 //pages
 import home from './Pages/home';
+import user from './Pages/user';
 import login from './Pages/login';
 import signup from './Pages/signup';
 import settings from './Pages/settings';
 import forgotPassword from './Pages/forgotPassword';
-import settingsPassword from './Pages/settingsPassword';
-import settingsEmail from './Pages/settingsEmail';
-import settingsDelete from './Pages/settingsDelete';
+import settingsPassword from './Pages/settings/settingsPassword';
+import settingsEmail from './Pages/settings/settingsEmail';
+import settingsDelete from './Pages/settings/settingsDelete';
 
 //components
 import Navbar from './Components/Navbar';
@@ -93,6 +94,9 @@ class App extends Component {
                   component={settingsDelete}
                 />
                 <Route exact path="/settingsEmail" component={settingsEmail} />
+                <Route exact path="/user" component={user} />
+                <Route exact path="/:handle/ad/:adId" component={home} />
+                <Route exact path="/user/:handle/ad/:adId" component={user} />
               </Switch>
             </div>
           </Router>

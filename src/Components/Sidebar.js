@@ -53,22 +53,6 @@ class Sidebar extends Component {
     const classes = this.props;
     return (
       <div>
-        {/* <CssBaseline /> */}
-        {/* <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar>
-            <Typography variant="h6" noWrap>
-              Permanent drawer
-            </Typography>
-          </Toolbar>
-        </AppBar> */}
-        {/* <Drawer
-          className={classes.drawer}
-          variant="permanent"
-          classes={{
-            paper: classes.drawerPaper
-          }}
-          anchor="left"
-        > */}
         <div className={classes.toolbar} />
         <Divider />
 
@@ -84,28 +68,8 @@ class Sidebar extends Component {
           </MenuItem>
         </MenuList>
 
-        {/* <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List> */}
         <Divider />
-        {/* <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List> */}
-        {/* </Drawer> */}
+
         <MenuList>
           <MenuItem>
             <IconButton onClick={this.handleLogout}>

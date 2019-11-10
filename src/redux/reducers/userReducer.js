@@ -18,7 +18,8 @@ const initialState = {
   credentials: {},
   likes: [],
   notifications: [],
-  reviews: []
+  reviews: [],
+  advertisments: []
 };
 
 export default function(state = initialState, action) {
@@ -36,6 +37,11 @@ export default function(state = initialState, action) {
         loading: false,
         ...action.payload // credentials: action.payload[0]
       };
+    // case POST_AD:
+    //   return {
+    //     ...state,
+    //     advertisments: [action.payload, ...state.advertisments]
+    //   };
     case LOADING_USER:
       return {
         ...state,
@@ -51,11 +57,13 @@ export default function(state = initialState, action) {
             adId: action.payload.adId
           }
         ]
+        // advertisments: [action.payload, ...state.advertisments]
       };
     case UNLIKE_AD:
       return {
         ...state,
         likes: state.likes.filter(like => like.adId !== action.payload.adId) //unlike a scream filter ou
+        // advertisments: [action.payload, ...state.advertisments]
       };
 
     case NOTIFICATIONS_READ:
