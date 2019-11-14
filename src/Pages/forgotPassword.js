@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Pic from '../images/Pic.jpg';
+import Pic from '../images/Pic.png';
 
 //material ui
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -27,7 +27,9 @@ const styles = {
     margin: '20px auto 20px auto'
   },
   image: {
-    margin: '20px auto 20px auto'
+    margin: '20px auto 20px auto',
+    width: '600px',
+    height: '600px'
   },
   textField: {
     margin: '10px auto 10px auto'
@@ -61,7 +63,7 @@ class forgotPassword extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) this.setState({ errors: nextProps.UI.errors }); //get errors and set them to local state
     if (nextProps.UI.messages)
       this.setState({ messages: nextProps.UI.messages }); //get messages and set them to local state

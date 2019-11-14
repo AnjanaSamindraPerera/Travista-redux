@@ -112,17 +112,23 @@ class EditAbout extends Component {
           fullWidth
           maxWidth="sm"
         >
-          <DialogTitle>Edit your details</DialogTitle>
+          <DialogTitle>
+            <span style={{ fontFamily: 'Arial', color: '#00bcd4' }}>
+              Edit your details
+            </span>
+          </DialogTitle>
           <DialogContent>
             <form>
               <TextField
                 name="bio"
                 type="text"
                 label="Bio"
+                inputProps={{ style: { fontFamily: 'Arial', color: 'green' } }}
                 multiline
                 rows="3"
                 placeholder="A short description about your service"
                 className={classes.textField}
+                variant="outlined"
                 value={this.state.bio}
                 onChange={this.handleChange}
                 fullWidth
@@ -132,8 +138,10 @@ class EditAbout extends Component {
                 name="location"
                 type="text"
                 label="Location"
+                inputProps={{ style: { fontFamily: 'Arial', color: 'green' } }}
                 placeholder="Your location"
                 className={classes.textField}
+                variant="outlined"
                 value={this.state.location}
                 onChange={this.handleChange}
                 fullWidth
@@ -143,8 +151,10 @@ class EditAbout extends Component {
                 name="website"
                 type="text"
                 label="Website"
+                inputProps={{ style: { fontFamily: 'Arial', color: 'green' } }}
                 placeholder="Your profesional website"
                 className={classes.textField}
+                variant="outlined"
                 value={this.state.website}
                 onChange={this.handleChange}
                 fullWidth
@@ -154,8 +164,10 @@ class EditAbout extends Component {
                 name="telNo"
                 type="text"
                 label="Telephone NO"
+                inputProps={{ style: { fontFamily: 'Arial', color: 'green' } }}
                 placeholder=" Your contact number"
                 className={classes.textField}
+                variant="outlined"
                 value={this.state.telNo}
                 onChange={this.handleChange}
                 fullWidth

@@ -89,14 +89,25 @@ class AdDialog extends Component {
       this.handleOpen();
     }
   }
+
+  // componentWillReceiveProps = nextProps => {
+  //   if (nextProps.openDialog === true) {
+  //     console.log('in open dialog');
+  //     this.handleOpen();
+  //   }
+  // };
+
   handleOpen = () => {
     let oldPath = window.location.pathname;
     const { userHandle, adId } = this.props;
 
     //constructing a url when open a advertisment
-    const newPath = `/${userHandle}/ad/${adId}`;
+    const newPath = encodeURI(`/user/${userHandle}/ad/${adId}`);
 
-    if (oldPath === newPath) oldPath = `/users`;
+    if (oldPath === newPath) {
+      //when checking notifications
+      oldPath = newPath;
+    }
 
     window.history.pushState(null, null, newPath);
     this.setState({ open: true, oldPath, newPath });
@@ -107,6 +118,11 @@ class AdDialog extends Component {
     window.history.pushState(null, null, this.state.oldPath);
     this.setState({ open: false });
     this.props.clearErrors();
+
+    if (this.state.oldPath === this.state.newPath) {
+      //only happens when checking notifications
+      window.location.href = '/';
+    }
   };
 
   render() {

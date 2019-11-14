@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
-import ReviewSkeleton from '../util/skeltons/ReviewSkelton';
 
 //components
-import Cover from '../Components/Cover.js';
-import Review from '../Components/Review.js';
-import Profile from '../Components/Profile';
-import About from '../Components/About';
-import Ad from '../Components/advertisment/Ad.js';
+
+import AdDialog from '../Components/advertisment/AdDialog.js';
 
 //redux
 import { connect } from 'react-redux';
@@ -28,44 +24,36 @@ export class home extends Component {
 
   render() {
     const { ads, loading } = this.props.data;
-    const { reviews } = this.props.user;
     const { adIdParam } = this.state;
+    const {
+      user: {
+        credentials: { handle }
+      }
+    } = this.props;
 
-    // let recentAdsMarkup = !loading ?  (
-    //   ads.map(ad => <Ad key={ad.adId} ad={ad} />)
-    // ) : (
-    //   <h1>Loading..</h1>
-    // );
-
-    const recentAdsMarkup = ads.map(ad => {
-      if (ad.adId === adIdParam) return <Ad key={ad.adId} ad={ad} openDialog />;
-    });
-
-    let recentReviewsMarkup = !loading ? (
-      reviews.map(review => <Review key={review.reviewId} review={review} />)
+    let recentAdsMarkup = !loading ? (
+      ads
+        .filter(ad => ad.adId === adIdParam)
+        .map(ad => (
+          <AdDialog
+            key={ad.adId}
+            ad={ad}
+            adId={ad.adId}
+            userHandle={handle}
+            openDialog
+          />
+        ))
     ) : (
-      <ReviewSkeleton />
+      <h1> </h1>
     );
 
     return (
       <div>
         <Grid container spacing={2}>
-          {/* <Grid item sm={8} xs={12}>
-            <Cover />
-          </Grid> */}
-
-          {/* <Grid item sm={4} xs={12}>
-            <Profile />
-          </Grid> */}
-
-          {/* <Grid item sm={8} xs={12}>
-            {recentReviewsMarkup}
-          </Grid> */}
-          {/* <Grid item sm={4} xs={12}>
-            <About />
-          </Grid> */}
-
-          <Grid item>{recentAdsMarkup}</Grid>
+          <Grid item sm={6}>
+            {recentAdsMarkup}
+          </Grid>
+          <Grid item sm={6}></Grid>
         </Grid>
       </div>
     );

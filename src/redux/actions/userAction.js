@@ -19,7 +19,7 @@ export const loginUser = (userData, history) => dispatch => {
   //dispatch beacause we have asychronous code
 
   dispatch({ type: LOADING_UI }); //action
-
+  dispatch({ type: CLEAR_ERRORS });
   axios
     .post('/login', userData)
     .then(res => {
@@ -42,7 +42,7 @@ export const signupUser = (newUserData, history) => dispatch => {
   //dispatch beacause we have asychronous code
 
   dispatch({ type: LOADING_UI }); //action
-
+  dispatch({ type: CLEAR_ERRORS });
   axios
     .post('/signup', newUserData)
     .then(res => {

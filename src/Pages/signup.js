@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Pic from '../images/Pic.jpg';
+import Pic from '../images/Pic.png';
 import { Link } from 'react-router-dom';
 
 //material ui
@@ -35,7 +35,9 @@ const styles = {
     margin: '20px auto 20px auto'
   },
   image: {
-    margin: '20px auto 20px auto'
+    margin: '20px auto 20px auto',
+    width: '600px',
+    height: '600px'
   },
   textField: {
     margin: '10px auto 10px auto'
@@ -91,7 +93,7 @@ class signup extends Component {
     this.props.signupUser(newUserData, this.props.history);
   };
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) this.setState({ errors: nextProps.UI.errors }); //get errors and set them to local state
   }
 
@@ -206,6 +208,7 @@ class signup extends Component {
                 <CircularProgress size={30} className={classes.progress} />
               )}
             </Button>
+            <br />
             <br />
             <small>
               Already have an account ?login <Link to="/login">here</Link>

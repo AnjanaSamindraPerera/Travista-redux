@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Pic from '../images/Pic.jpg';
+import Pic from '../images/Pic.png';
 import { Link } from 'react-router-dom';
 
 //material ui
@@ -31,7 +31,9 @@ const styles = {
     margin: '20px auto 20px auto'
   },
   image: {
-    margin: '20px auto 20px auto'
+    margin: '20px auto 20px auto',
+    width: '600px',
+    height: '600px'
   },
   textField: {
     margin: '10px auto 10px auto'
@@ -60,7 +62,7 @@ class login extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) this.setState({ errors: nextProps.UI.errors }); //get errors and set them to local state
   }
 

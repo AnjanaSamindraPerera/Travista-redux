@@ -70,7 +70,7 @@ class PostAd extends Component {
     errors: {}
   };
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) this.setState({ errors: nextProps.UI.errors }); //get errors and set them to local state
     if (!nextProps.UI.errors && !nextProps.UI.loading) {
       this.setState({ body: '', open: false, errors: {} });

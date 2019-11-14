@@ -64,7 +64,7 @@ class settingsDelete extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) this.setState({ errors: nextProps.UI.errors }); //get errors and set them to local state
     if (nextProps.UI.messages)
       this.setState({ messages: nextProps.UI.messages }); //get messages and set them to local state

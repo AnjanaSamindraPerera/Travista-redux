@@ -14,6 +14,22 @@ import Ad from '../Components/advertisment/Ad.js';
 import { connect } from 'react-redux';
 import { getAds } from '../redux/actions/dataAction';
 
+//material-ui
+import withStyles from '@material-ui/core/styles/withStyles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+
+const styles = {
+  card: {
+    display: 'flex',
+    marginBottom: 20
+  },
+  content: {
+    padding: 25,
+    objectFit: 'cover'
+  }
+};
+
 export class home extends Component {
   state = {
     adId: null
@@ -30,6 +46,7 @@ export class home extends Component {
     const { ads, loading } = this.props.data;
     const { reviews } = this.props.user;
     const { adIdParam } = this.state;
+    const { classes } = this.props;
 
     // let recentAdsMarkup = !loading ?  (
     //   ads.map(ad => <Ad key={ad.adId} ad={ad} />)
@@ -39,8 +56,12 @@ export class home extends Component {
 
     const recentAdsMarkup = loading ? (
       <h1>Loading..</h1>
-    ) : ads === null ? (
-      <p>No ads from this user</p>
+    ) : ads.length === 0 ? (
+      <Card className={classes.Card}>
+        <CardContent className={classes.content}>
+          <h3>No ads from this user</h3>
+        </CardContent>
+      </Card>
     ) : !adIdParam ? (
       ads.map(ad => <Ad key={ad.adId} ad={ad} />)
     ) : (
@@ -50,10 +71,22 @@ export class home extends Component {
       })
     );
 
-    let recentReviewsMarkup = !loading ? (
-      reviews.map(review => <Review key={review.reviewId} review={review} />)
-    ) : (
+    // let recentReviewsMarkup = !loading ? (
+    //   reviews.map(review => <Review key={review.reviewId} review={review} />)
+    // ) : (
+    //   <ReviewSkeleton />
+    // );
+
+    const recentReviewsMarkup = loading ? (
       <ReviewSkeleton />
+    ) : reviews.length === 0 ? (
+      <Card className={classes.Card}>
+        <CardContent className={classes.content}>
+          <h3>No reviews yet</h3>
+        </CardContent>
+      </Card>
+    ) : (
+      reviews.map(review => <Review key={review.reviewId} review={review} />)
     );
 
     return (
@@ -97,4 +130,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getAds }
-)(home);
+)(withStyles(styles)(home));
