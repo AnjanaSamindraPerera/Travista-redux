@@ -69,7 +69,7 @@ const styles = theme => ({
 
 class Profile extends Component {
   render() {
-    const {
+    let {
       classes,
       user: {
         credentials: { bio, website, location, telNo },
@@ -77,6 +77,16 @@ class Profile extends Component {
         authenticated
       }
     } = this.props;
+
+    if (
+      //when theere are no details
+      bio === undefined &&
+      website === undefined &&
+      location === undefined &&
+      telNo === undefined
+    ) {
+      bio = 'Edit Your details ';
+    }
 
     let profileMarkup = !loading ? (
       authenticated ? (
@@ -121,7 +131,7 @@ class Profile extends Component {
         </Paper>
       ) : (
         <Paper className={classes.paper}>
-          <Typography variant="body2" align="center">
+          <Typography component={'div'} variant="body2" align="center">
             No profile found please login again
             <div className={classes.buttons}>
               <Button

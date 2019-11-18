@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-
 import MyButton from '../../util/MyButton';
-
 import PropTypes from 'prop-types';
 
 //Mui
@@ -78,7 +76,4 @@ DeleteAd.propTypes = {
   adId: PropTypes.string.isRequired
 };
 
-export default connect(
-  null,
-  { deleteAd }
-)(withStyles(styles)(DeleteAd));
+export default connect(null, { deleteAd })(withStyles(styles)(DeleteAd));

@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 
 //components
-
 import AdDialog from '../Components/advertisment/AdDialog.js';
 
 //redux
@@ -71,7 +70,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(
-  mapStateToProps,
-  { getAds }
-)(home);
+export default connect(mapStateToProps, { getAds })(home);

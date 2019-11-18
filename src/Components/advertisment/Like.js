@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 // Icons
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-// REdux
+
+//Redux
 import { connect } from 'react-redux';
 import { likeAd, unlikeAd } from '../../redux/actions/dataAction';
 
@@ -61,7 +62,4 @@ const mapActionsToProps = {
   unlikeAd
 };
 
-export default connect(
-  mapStateToProps,
-  mapActionsToProps
-)(Like);
+export default connect(mapStateToProps, mapActionsToProps)(Like);

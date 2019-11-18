@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 
 //material ui
 import withStyles from '@material-ui/core/styles/withStyles';
-//import clsx from 'clsx';
-//import { makeStyles } from '@material-ui/core/styles';
-//import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';

@@ -210,7 +210,6 @@ const mapStateToProps = state => ({
   credentials: state.user.credentials
 });
 
-export default connect(
-  mapStateToProps,
-  { editUserDetails }
-)(withStyles(styles)(EditAbout));
+export default connect(mapStateToProps, { editUserDetails })(
+  withStyles(styles)(EditAbout)
+);

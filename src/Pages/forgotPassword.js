@@ -109,7 +109,7 @@ class forgotPassword extends Component {
           </Typography>
           <br />
 
-          <Typography className={classes.pageTittle}>
+          <Typography component={'div'} className={classes.pageTittle}>
             <Box fontWeight="fontWeightBold" fontStyle="oblique" m={1}>
               We will send you an email with instructions on how to reset your
               password.
