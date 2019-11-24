@@ -72,7 +72,7 @@ class Profile extends Component {
     let {
       classes,
       user: {
-        credentials: { bio, website, location, telNo },
+        credentials: { bio, website, location, telNo, booking },
         loading,
         authenticated
       }
@@ -80,10 +80,11 @@ class Profile extends Component {
 
     if (
       //when theere are no details
-      bio === undefined &&
-      website === undefined &&
-      location === undefined &&
-      telNo === undefined
+      (bio === undefined || bio === ' ') &&
+      (website === undefined || website === ' ') &&
+      (location === undefined || location === ' ') &&
+      (telNo === undefined || telNo === ' ') &&
+      (booking === undefined || booking === ' ')
     ) {
       bio = 'Edit Your details ';
     }
@@ -99,7 +100,7 @@ class Profile extends Component {
               <hr />
               {bio && <Typography variant="body2">{bio}</Typography>}
               <hr />
-              {location && (
+              {location !== undefined && location !== ' ' && (
                 <Fragment>
                   <LocationOn color="primary" />
 
@@ -107,21 +108,33 @@ class Profile extends Component {
                   <hr />
                 </Fragment>
               )}
-              {website && (
+              {website !== undefined && website !== ' ' && (
                 <Fragment>
                   <LinkIcon color="primary" />
                   <a href={website} target="_blank" rel="noopener noreferrer">
                     {' '}
                     {website}
+                    {console.log(website)}
                   </a>
                   <hr />
                 </Fragment>
               )}
-              {telNo && (
+              {telNo !== undefined && telNo !== ' ' && (
                 <Fragment>
                   <LocalPhoneIcon color="primary" />
 
                   <span>{telNo}</span>
+                  <hr />
+                </Fragment>
+              )}
+
+              {booking !== undefined && booking !== ' ' && (
+                <Fragment>
+                  <LinkIcon color="primary" />
+                  <a href={booking} target="_blank" rel="noopener noreferrer">
+                    {' '}
+                    {booking}
+                  </a>
                   <hr />
                 </Fragment>
               )}

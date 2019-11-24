@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Pic from '../images/Pic.png';
+import { toast } from 'react-toastify';
 
 //material ui
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -85,6 +86,16 @@ class forgotPassword extends Component {
     });
   };
 
+  notify = message => {
+    toast(message, {
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      type: 'success'
+    });
+  };
   render() {
     const {
       classes,
@@ -149,11 +160,7 @@ class forgotPassword extends Component {
             </Button>
             <br />
             <br />
-            {messages.message && (
-              <Typography variant="h2" className={classes.customSuccess}>
-                {messages.message}
-              </Typography>
-            )}
+            {messages.message && this.notify(messages.message)}
           </form>
         </Grid>
       </Grid>

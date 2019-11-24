@@ -4,7 +4,7 @@ import './App.css';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import jwtDecode from 'jwt-decode';
-
+import { toast } from 'react-toastify';
 //pages
 import home from './Pages/home';
 import user from './Pages/user';
@@ -27,6 +27,8 @@ import { SET_AUTHENTICATED } from './redux/types';
 import { logoutUser, getUserData } from './redux/actions/userAction';
 import axios from 'axios';
 // import themeObject from './util/theme';
+
+toast.configure();
 
 // const theme = createMuiTheme(themeObject);
 

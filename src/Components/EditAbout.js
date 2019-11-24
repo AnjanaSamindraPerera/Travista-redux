@@ -55,6 +55,7 @@ class EditAbout extends Component {
     location: '',
     website: '',
     telNO: '',
+    booking: '',
     open: false
   };
 
@@ -68,7 +69,8 @@ class EditAbout extends Component {
       bio: credentials.bio ? credentials.bio : '',
       location: credentials.location ? credentials.location : '',
       website: credentials.website ? credentials.website : '',
-      telNo: credentials.telNo ? credentials.telNo : ''
+      telNo: credentials.telNo ? credentials.telNo : '',
+      booking: credentials.booking ? credentials.booking : ''
     });
   };
 
@@ -88,7 +90,8 @@ class EditAbout extends Component {
       bio: this.state.bio,
       location: this.state.location,
       website: this.state.website,
-      telNo: this.state.telNo
+      telNo: this.state.telNo,
+      booking: this.state.booking
     };
 
     this.props.editUserDetails(userDetails);
@@ -173,17 +176,18 @@ class EditAbout extends Component {
                 fullWidth
               />
 
-              {/* <TextField
-                    name="bio"
-                    type="text"
-                    label="Bio"
-                    multiline
-                    rows="3"
-                    placeholder="A short description about your service"
-                    className={classes.textField}
-                    value={this.state.bio}
-                    onChange={this.handleChange }
-                    fullWidth/> */}
+              <TextField
+                name="booking"
+                type="text"
+                label="Booking"
+                variant="outlined"
+                inputProps={{ style: { fontFamily: 'Arial', color: 'green' } }}
+                placeholder="Your Booking site information"
+                className={classes.textField}
+                value={this.state.booking}
+                onChange={this.handleChange}
+                fullWidth
+              />
             </form>
           </DialogContent>
           <DialogActions>

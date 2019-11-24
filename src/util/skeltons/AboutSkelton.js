@@ -91,6 +91,8 @@ const AboutSkelton = props => {
           <LinkIcon color="primary" /> https://website.com
           <hr />
           <LocalPhoneIcon color="primary" /> Telephone number
+          <hr />
+          <LinkIcon color="primary" /> https://booking.com
         </div>
       </div>
     </Paper>
