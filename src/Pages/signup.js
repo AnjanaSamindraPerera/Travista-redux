@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Pic from '../images/Pic.png';
 import { Link } from 'react-router-dom';
+import SL2 from '../images/SL2.jpg';
 
 //material ui
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -9,6 +10,10 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Avatar from '@material-ui/core/Avatar';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
 
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -32,9 +37,9 @@ const styles = {
     margin: '20px auto 20px auto'
   },
   image: {
-    margin: '20px auto 20px auto',
-    width: '600px',
-    height: '600px'
+    margin: '300px auto 20px auto',
+    width: '100px',
+    height: '100px'
   },
   textField: {
     margin: '10px auto 10px auto'
@@ -56,8 +61,38 @@ const styles = {
     // marginBottom:100,
     minWidth: 120,
     maxWidth: 300
+  },
+  paper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  avatar: {
+    backgroundColor: '#ff3d00'
+  },
+  image2: {
+    backgroundImage: `url(${SL2})`,
+    backgroundRepeat: 'no-repeat',
+
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    width: '900px',
+    height: '800px'
   }
 };
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" to="http://localhost:3000/">
+        Travista
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 class signup extends Component {
   constructor() {
@@ -109,108 +144,128 @@ class signup extends Component {
 
     return (
       <Grid container spacing={10} className={classes.form}>
-        <Grid item sm>
+        <Grid item sm className={classes.image2}>
           <img src={Pic} alt="logo" className={classes.image} />
         </Grid>
 
-        <Grid item sm>
-          <Typography variant="h2" className={classes.pageTittle}>
-            Signup
-          </Typography>
-          <form noValidate onSubmit={this.handleSubmit}>
-            <TextField
-              id="email"
-              type="email"
-              name="email"
-              label="Email"
-              className={classes.textField}
-              value={this.state.email}
-              onChange={this.handleChange}
-              helperText={errors.email}
-              error={errors.email ? true : false}
-              fullWidth
-            />
+        <Grid item sm component={Paper} elevation={6} square>
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
 
-            <TextField
-              id="password"
-              type="password"
-              name="password"
-              label="Password"
-              className={classes.textField}
-              value={this.state.password}
-              onChange={this.handleChange}
-              helperText={errors.password}
-              error={errors.password ? true : false}
-              fullWidth
-            />
-
-            <TextField
-              id="confirmPassword"
-              type="password"
-              name="confirmPassword"
-              label="Confirm Password"
-              className={classes.textField}
-              value={this.state.confirmPassword}
-              onChange={this.handleChange}
-              helperText={errors.confirmPassword}
-              error={errors.confirmPassword ? true : false}
-              fullWidth
-            />
-
-            <TextField
-              id="handle"
-              type="text"
-              name="handle"
-              label="Name"
-              className={classes.textField}
-              value={this.state.handle}
-              onChange={this.handleChange}
-              helperText={errors.handle}
-              error={errors.handle ? true : false}
-              fullWidth
-            />
-
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="category-simple">category</InputLabel>
-              <Select
-                value={this.state.category}
-                onChange={this.handleChange}
-                inputProps={{
-                  name: 'category',
-                  id: 'category-simple'
-                }}
-              >
-                <MenuItem value={1}>Hotel</MenuItem>
-                <MenuItem value={2}>Driver</MenuItem>
-                <MenuItem value={3}>Business </MenuItem>
-              </Select>
-            </FormControl>
-
-            <br />
-            {errors.general && (
-              <Typography variant="body2" className={classes.customError}>
-                {errors.general}
-              </Typography>
-            )}
-
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              disabled={loading}
+            <Typography
+              variant="h5"
+              component="h1"
+              className={classes.pageTittle}
             >
-              Signup
-              {loading && (
-                <CircularProgress size={30} className={classes.progress} />
+              Sign up
+            </Typography>
+            <form noValidate onSubmit={this.handleSubmit}>
+              <TextField
+                id="email"
+                type="email"
+                name="email"
+                label="Email"
+                className={classes.textField}
+                value={this.state.email}
+                onChange={this.handleChange}
+                helperText={errors.email}
+                error={errors.email ? true : false}
+                fullWidth
+              />
+
+              <TextField
+                id="password"
+                type="password"
+                name="password"
+                label="Password"
+                className={classes.textField}
+                value={this.state.password}
+                onChange={this.handleChange}
+                helperText={errors.password}
+                error={errors.password ? true : false}
+                fullWidth
+              />
+
+              <TextField
+                id="confirmPassword"
+                type="password"
+                name="confirmPassword"
+                label="Confirm Password"
+                className={classes.textField}
+                value={this.state.confirmPassword}
+                onChange={this.handleChange}
+                helperText={errors.confirmPassword}
+                error={errors.confirmPassword ? true : false}
+                fullWidth
+              />
+
+              <TextField
+                id="handle"
+                type="text"
+                name="handle"
+                label="Name"
+                className={classes.textField}
+                value={this.state.handle}
+                onChange={this.handleChange}
+                helperText={errors.handle}
+                error={errors.handle ? true : false}
+                fullWidth
+              />
+
+              <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="category-simple">category</InputLabel>
+                <Select
+                  value={this.state.category}
+                  onChange={this.handleChange}
+                  inputProps={{
+                    name: 'category',
+                    id: 'category-simple'
+                  }}
+                >
+                  <MenuItem value={1}>Hotel</MenuItem>
+                  <MenuItem value={2}>Driver</MenuItem>
+                  <MenuItem value={3}>Business </MenuItem>
+                </Select>
+              </FormControl>
+
+              <br />
+              {errors.general && (
+                <Typography variant="body2" className={classes.customError}>
+                  {errors.general}
+                </Typography>
               )}
-            </Button>
-            <br />
-            <br />
-            <small>
-              Already have an account ?login <Link to="/login">here</Link>
-            </small>
-          </form>
+
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                disabled={loading}
+              >
+                Signup
+                {loading && (
+                  <CircularProgress size={30} className={classes.progress} />
+                )}
+              </Button>
+              <br />
+              <br />
+              <small>
+                <Link
+                  to="/login"
+                  variant="body2"
+                  className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-body2 MuiTypography-colorPrimary"
+                >
+                  {' '}
+                  Already have an account ?
+                </Link>
+              </small>
+              <Box mt={5}>
+                <Copyright />
+              </Box>
+            </form>
+          </div>
         </Grid>
       </Grid>
     );

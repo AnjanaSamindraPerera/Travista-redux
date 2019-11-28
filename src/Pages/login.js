@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Pic from '../images/Pic.png';
+import SL from '../images/SL.jpg';
 import { Link } from 'react-router-dom';
 
 //material ui
@@ -9,6 +10,10 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Avatar from '@material-ui/core/Avatar';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
 
 //bring grid
 import Grid from '@material-ui/core/Grid';
@@ -28,9 +33,9 @@ const styles = {
     margin: '20px auto 20px auto'
   },
   image: {
-    margin: '20px auto 20px auto',
-    width: '600px',
-    height: '600px'
+    margin: '300px auto 20px auto',
+    width: '100px',
+    height: '100px'
   },
   textField: {
     margin: '10px auto 10px auto'
@@ -46,8 +51,39 @@ const styles = {
   },
   progress: {
     position: 'absolute'
+  },
+
+  paper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  avatar: {
+    backgroundColor: '#ff3d00'
+  },
+  image2: {
+    backgroundImage: `url(${SL})`,
+    backgroundRepeat: 'no-repeat',
+
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    width: '900px',
+    height: '800px'
   }
 };
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" to="http://localhost:3000/">
+        Travista
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 class login extends Component {
   constructor() {
@@ -88,68 +124,96 @@ class login extends Component {
     const { errors } = this.state;
 
     return (
-      <Grid container spacing={10} className={classes.form}>
-        <Grid item sm>
+      <Grid container spacing={10} className={classes.form} component={Paper}>
+        <Grid item sm className={classes.image2}>
           <img src={Pic} alt="logo" className={classes.image} />
         </Grid>
 
-        <Grid item sm>
-          <Typography variant="h2" className={classes.pageTittle}>
-            Login
-          </Typography>
-          <form noValidate onSubmit={this.handleSubmit}>
-            <TextField
-              id="email"
-              type="email"
-              name="email"
-              label="Email"
-              className={classes.textField}
-              value={this.state.email}
-              onChange={this.handleChange}
-              helperText={errors.email}
-              error={errors.email ? true : false}
-              fullWidth
-            />
-            <TextField
-              id="password"
-              type="password"
-              name="password"
-              label="Password"
-              className={classes.textField}
-              value={this.state.password}
-              onChange={this.handleChange}
-              helperText={errors.password}
-              error={errors.password ? true : false}
-              fullWidth
-            />
-            {errors.general && (
-              <Typography variant="body2" className={classes.customError}>
-                {errors.general}
-              </Typography>
-            )}
-
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              disabled={loading}
+        <Grid item sm component={Paper} elevation={6} square>
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography
+              variant="h5"
+              component="h1"
+              className={classes.pageTittle}
             >
-              Login
-              {loading && (
-                <CircularProgress size={30} className={classes.progress} />
+              Sign in
+            </Typography>
+            <form noValidate onSubmit={this.handleSubmit}>
+              <TextField
+                id="email"
+                type="email"
+                name="email"
+                label="Email"
+                className={classes.textField}
+                value={this.state.email}
+                onChange={this.handleChange}
+                helperText={errors.email}
+                error={errors.email ? true : false}
+                fullWidth
+              />
+              <TextField
+                id="password"
+                type="password"
+                name="password"
+                label="Password"
+                className={classes.textField}
+                value={this.state.password}
+                onChange={this.handleChange}
+                helperText={errors.password}
+                error={errors.password ? true : false}
+                fullWidth
+              />
+              {errors.general && (
+                <Typography variant="body2" className={classes.customError}>
+                  {errors.general}
+                </Typography>
               )}
-            </Button>
-            <br />
-            <br />
-            <small>
-              don't have an account ?sign up <Link to="/signup">here</Link>
-            </small>
-            <br />
-            <small>
-              Forgot your password? <Link to="/forgotPassword">click here</Link>
-            </small>
-          </form>
+
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                disabled={loading}
+              >
+                Login
+                {loading && (
+                  <CircularProgress size={30} className={classes.progress} />
+                )}
+              </Button>
+              <br />
+              <br />
+
+              <Link
+                to="/signup"
+                variant="body2"
+                className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-body2 MuiTypography-colorPrimary"
+              >
+                {' '}
+                don't have an account ?sign up
+              </Link>
+
+              <br />
+              <small>
+                {' '}
+                <Link
+                  to="/forgotPassword"
+                  variant="body2"
+                  className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-body2 MuiTypography-colorPrimary"
+                >
+                  {' '}
+                  Forgot password?
+                </Link>
+              </small>
+
+              <Box mt={5}>
+                <Copyright />
+              </Box>
+            </form>
+          </div>
         </Grid>
       </Grid>
     );
