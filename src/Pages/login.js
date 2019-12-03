@@ -59,8 +59,10 @@ const styles = {
     alignItems: 'center'
   },
   avatar: {
-    backgroundColor: '#ff3d00'
+    backgroundColor: '#ff3d00',
+    position: 'center'
   },
+
   image2: {
     backgroundImage: `url(${SL})`,
     backgroundRepeat: 'no-repeat',
@@ -124,16 +126,18 @@ class login extends Component {
     const { errors } = this.state;
 
     return (
-      <Grid container spacing={10} className={classes.form} component={Paper}>
-        <Grid item sm className={classes.image2}>
-          <img src={Pic} alt="logo" className={classes.image} />
-        </Grid>
+      <div>
+        <Grid container spacing={10} className={classes.form} component={Paper}>
+          <Grid item sm className={classes.image2}>
+            <img src={Pic} alt="logo" className={classes.image} />
+          </Grid>
 
-        <Grid item sm component={Paper} elevation={6} square>
-          <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
+          <Grid item sm component={Paper} elevation={6}>
+            <div className={classes.paper}>
+              <Avatar className={classes.avatar}>
+                <LockOutlinedIcon />
+              </Avatar>
+            </div>
             <Typography
               variant="h5"
               component="h1"
@@ -147,6 +151,7 @@ class login extends Component {
                 type="email"
                 name="email"
                 label="Email"
+                variant="outlined"
                 className={classes.textField}
                 value={this.state.email}
                 onChange={this.handleChange}
@@ -159,6 +164,7 @@ class login extends Component {
                 type="password"
                 name="password"
                 label="Password"
+                variant="outlined"
                 className={classes.textField}
                 value={this.state.password}
                 onChange={this.handleChange}
@@ -171,9 +177,9 @@ class login extends Component {
                   {errors.general}
                 </Typography>
               )}
-
               <Button
                 type="submit"
+                fullWidth
                 variant="contained"
                 color="primary"
                 className={classes.button}
@@ -186,7 +192,6 @@ class login extends Component {
               </Button>
               <br />
               <br />
-
               <Link
                 to="/signup"
                 variant="body2"
@@ -195,27 +200,22 @@ class login extends Component {
                 {' '}
                 don't have an account ?sign up
               </Link>
-
-              <br />
-              <small>
+              <br />{' '}
+              <Link
+                to="/forgotPassword"
+                variant="body2"
+                className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-body2 MuiTypography-colorPrimary"
+              >
                 {' '}
-                <Link
-                  to="/forgotPassword"
-                  variant="body2"
-                  className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-body2 MuiTypography-colorPrimary"
-                >
-                  {' '}
-                  Forgot password?
-                </Link>
-              </small>
-
+                Forgot password?
+              </Link>
               <Box mt={5}>
                 <Copyright />
               </Box>
             </form>
-          </div>
+          </Grid>
         </Grid>
-      </Grid>
+      </div>
     );
   }
 }

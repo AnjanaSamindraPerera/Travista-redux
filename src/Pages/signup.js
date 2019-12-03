@@ -148,7 +148,7 @@ class signup extends Component {
           <img src={Pic} alt="logo" className={classes.image} />
         </Grid>
 
-        <Grid item sm component={Paper} elevation={6} square>
+        <Grid item sm component={Paper} elevation={6}>
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
@@ -167,6 +167,7 @@ class signup extends Component {
                 type="email"
                 name="email"
                 label="Email"
+                variant="outlined"
                 className={classes.textField}
                 value={this.state.email}
                 onChange={this.handleChange}
@@ -180,6 +181,7 @@ class signup extends Component {
                 type="password"
                 name="password"
                 label="Password"
+                variant="outlined"
                 className={classes.textField}
                 value={this.state.password}
                 onChange={this.handleChange}
@@ -193,6 +195,7 @@ class signup extends Component {
                 type="password"
                 name="confirmPassword"
                 label="Confirm Password"
+                variant="outlined"
                 className={classes.textField}
                 value={this.state.confirmPassword}
                 onChange={this.handleChange}
@@ -206,6 +209,7 @@ class signup extends Component {
                 type="text"
                 name="handle"
                 label="Name"
+                variant="outlined"
                 className={classes.textField}
                 value={this.state.handle}
                 onChange={this.handleChange}
@@ -230,7 +234,6 @@ class signup extends Component {
                 </Select>
               </FormControl>
 
-              <br />
               {errors.general && (
                 <Typography variant="body2" className={classes.customError}>
                   {errors.general}
@@ -241,6 +244,7 @@ class signup extends Component {
                 type="submit"
                 variant="contained"
                 color="primary"
+                fullWidth
                 className={classes.button}
                 disabled={loading}
               >
@@ -250,7 +254,7 @@ class signup extends Component {
                 )}
               </Button>
               <br />
-              <br />
+
               <small>
                 <Link
                   to="/login"

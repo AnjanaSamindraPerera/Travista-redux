@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Pic from '../images/Pic.png';
 import { toast } from 'react-toastify';
+import SL3 from '../images/SL3.jpg';
+import { Link } from 'react-router-dom';
 
 //material ui
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -10,6 +12,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Box from '@material-ui/core/Box';
+
+import Paper from '@material-ui/core/Paper';
+
 //bring grid
 import Grid from '@material-ui/core/Grid';
 
@@ -28,9 +33,9 @@ const styles = {
     margin: '20px auto 20px auto'
   },
   image: {
-    margin: '20px auto 20px auto',
-    width: '600px',
-    height: '600px'
+    margin: '300px auto 20px auto',
+    width: '100px',
+    height: '100px'
   },
   textField: {
     margin: '10px auto 10px auto'
@@ -51,8 +56,39 @@ const styles = {
   },
   progress: {
     position: 'absolute'
+  },
+  paper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  avatar: {
+    backgroundColor: '#ff3d00'
+  },
+
+  image2: {
+    backgroundImage: `url(${SL3})`,
+    backgroundRepeat: 'no-repeat',
+
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    width: '900px',
+    height: '800px'
   }
 };
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" to="http://localhost:3000/">
+        Travista
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 class forgotPassword extends Component {
   constructor() {
@@ -105,17 +141,22 @@ class forgotPassword extends Component {
     const { messages } = this.state;
 
     return (
-      <Grid container spacing={10} className={classes.form}>
-        <Grid item sm>
+      <Grid container spacing={10} className={classes.form} component={Paper}>
+        <Grid item sm className={classes.image2}>
           <img src={Pic} alt="logo" className={classes.image} />
         </Grid>
 
-        <Grid item sm>
+        <Grid item sm component={Paper} elevation={6}>
           <br />
           <br />
           <br />
 
-          <Typography variant="h2" className={classes.pageTittle}>
+          <Typography
+            variant="h3"
+            component="h1"
+            className={classes.pageTittle}
+          >
+            {' '}
             Forgot Password
           </Typography>
           <br />
@@ -132,6 +173,7 @@ class forgotPassword extends Component {
               type="email"
               name="email"
               label="Email"
+              variant="outlined"
               className={classes.textField}
               value={this.state.email}
               onChange={this.handleChange}
@@ -148,6 +190,7 @@ class forgotPassword extends Component {
 
             <Button
               type="submit"
+              fullWidth
               variant="contained"
               color="primary"
               className={classes.button}
@@ -161,6 +204,19 @@ class forgotPassword extends Component {
             <br />
             <br />
             {messages.message && this.notify(messages.message)}
+            <small>
+              <Link
+                to="/login"
+                variant="body2"
+                className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-body2 MuiTypography-colorPrimary"
+              >
+                {' '}
+                Back to login
+              </Link>
+            </small>
+            <Box mt={5}>
+              <Copyright />
+            </Box>
           </form>
         </Grid>
       </Grid>

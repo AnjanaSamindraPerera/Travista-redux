@@ -77,13 +77,7 @@ class App extends Component {
             <div className="container">
               <Switch>
                 <Route exact path="/" component={home} />
-                <AuthRoute exact path="/login" component={login} />
-                <AuthRoute exact path="/signup" component={signup} />
-                <AuthRoute
-                  exact
-                  path="/forgotPassword"
-                  component={forgotPassword}
-                />
+
                 <Route exact path="/settings" component={settings} />
                 <Route
                   exact
@@ -99,6 +93,17 @@ class App extends Component {
                 <Route exact path="/user" component={user} />
                 <Route exact path="/:handle/ad/:adId" component={home} />
                 <Route exact path="/user/:handle/ad/:adId" component={user} />
+              </Switch>
+            </div>
+            <div className="container2">
+              <Switch>
+                <AuthRoute exact path="/login" component={login} />
+                <AuthRoute exact path="/signup" component={signup} />
+                <AuthRoute
+                  exact
+                  path="/forgotPassword"
+                  component={forgotPassword}
+                />
               </Switch>
             </div>
           </Router>
