@@ -50,14 +50,60 @@ const styles = {
 };
 
 class EditAbout extends Component {
+  constructor(props) {
+    super(props);
+    this.getLocation = this.getLocation.bind(this);
+    this.getCoordinates = this.getCoordinates.bind(this);
+  }
+
   state = {
     bio: '',
     location: '',
     website: '',
     telNO: '',
     booking: '',
-    open: false
+    open: false,
+    latitude: '',
+    longitude: '',
+    userAddress: ''
   };
+
+  getCoordinates(position) {
+    console.log(position.coords.latitude);
+    this.setState({
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude
+    });
+  }
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        this.getCoordinates,
+        this.handleLocationError
+      );
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
+  }
+
+  handleLocationError(error) {
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        alert('User denied the request for Geolocation.');
+        break;
+      case error.POSITION_UNAVAILABLE:
+        alert('Location information is unavailable.');
+        break;
+      case error.TIMEOUT:
+        alert('The request to get user location timed out.');
+        break;
+      case error.UNKNOWN_ERROR:
+        alert('An unknown error occurred.');
+        break;
+      default:
+    }
+  }
 
   componentDidMount() {
     const { credentials } = this.props;
@@ -91,7 +137,9 @@ class EditAbout extends Component {
       location: this.state.location,
       website: this.state.website,
       telNo: this.state.telNo,
-      booking: this.state.booking
+      booking: this.state.booking,
+      lat: this.state.latitude.toString(),
+      long: this.state.longitude.toString()
     };
 
     this.props.editUserDetails(userDetails);
@@ -189,6 +237,28 @@ class EditAbout extends Component {
                 fullWidth
               />
             </form>
+
+            {/* <h2>Geo location</h2> */}
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={this.getLocation}
+            >
+              Get cordinates
+            </Button>
+            <h4>coordinates</h4>
+            <p>Latitude:{this.state.latitude}</p>
+            <p>Longitude:{this.state.longitude}</p>
+            {/* <p>Address:{this.state.userAddress}</p> */}
+
+            {this.state.latitude && this.state.longitude ? (
+              <img
+                src={
+                  "https://maps.googleapis.com/maps/api/staticmap?center=${this.state.latitude},${this.state.longitude}&zoom=14&size=400x300&sensor=false&key='AIzaSyBu_WFDMOH6wmKg9ju9yjdmkDfKsVzXsiQ'"
+                }
+                alt=""
+              />
+            ) : null}
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">

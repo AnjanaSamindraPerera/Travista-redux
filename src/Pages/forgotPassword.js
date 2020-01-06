@@ -3,6 +3,7 @@ import Pic from '../images/Pic.png';
 import { toast } from 'react-toastify';
 import SL3 from '../images/SL3.jpg';
 import { Link } from 'react-router-dom';
+import Copyright from '../util/Copyright';
 
 //material ui
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -76,19 +77,6 @@ const styles = {
     height: '800px'
   }
 };
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" to="http://localhost:3000/">
-        Travista
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 class forgotPassword extends Component {
   constructor() {

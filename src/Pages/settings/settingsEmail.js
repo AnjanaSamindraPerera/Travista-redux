@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Paper from '@material-ui/core/Paper';
 
 //bring grid
 import Grid from '@material-ui/core/Grid';
@@ -47,6 +48,11 @@ const styles = {
   },
   progress: {
     position: 'absolute'
+  },
+  paper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   }
 };
 
@@ -93,8 +99,14 @@ class settingsEmail extends Component {
     const { messages } = this.state;
 
     return (
-      <div style={{ backgroundColor: '#FFFF' }}>
-        <Grid container spacing={10} className={classes.form}>
+      <div>
+        <Grid
+          container
+          spacing={10}
+          className={classes.form}
+          component={Paper}
+          style={{ height: '100vh' }}
+        >
           <Grid item sm>
             <Sidebar />
           </Grid>

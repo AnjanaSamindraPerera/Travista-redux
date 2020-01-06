@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Pic from '../images/Pic.png';
 import SL from '../images/SL.jpg';
 import { Link } from 'react-router-dom';
-
+import Copyright from '../util/Copyright';
 //material ui
 import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField';
@@ -73,19 +73,6 @@ const styles = {
     height: '800px'
   }
 };
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" to="http://localhost:3000/">
-        Travista
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 class login extends Component {
   constructor() {
@@ -198,7 +185,7 @@ class login extends Component {
                 className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-body2 MuiTypography-colorPrimary"
               >
                 {' '}
-                don't have an account ?sign up
+                Don't have an account ? Sign Up
               </Link>
               <br />{' '}
               <Link

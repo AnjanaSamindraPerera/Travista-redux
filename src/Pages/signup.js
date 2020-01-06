@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Pic from '../images/Pic.png';
 import { Link } from 'react-router-dom';
 import SL2 from '../images/SL2.jpg';
+import Copyright from '../util/Copyright';
 
 //material ui
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -80,19 +81,6 @@ const styles = {
     height: '800px'
   }
 };
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" to="http://localhost:3000/">
-        Travista
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 class signup extends Component {
   constructor() {

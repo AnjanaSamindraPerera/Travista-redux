@@ -12,6 +12,7 @@ import Review from '../Components/Review.js';
 import Profile from '../Components/Profile';
 import About from '../Components/About';
 import Ad from '../Components/advertisment/Ad.js';
+import Map from '../Components/Map';
 
 //redux
 import { connect } from 'react-redux';
@@ -134,6 +135,14 @@ export class home extends Component {
             {recentAdsMarkup}
           </Grid>
           <Grid item sm={4} xs={12}>
+            {/* <Map
+              google={this.props.google}
+              center={{ lat: 18.5204, lng: 73.8567 }}
+              height="300px"
+              zoom={15}
+            /> */}
+            <br />
+            <br />
             <StripeCheckout
               stripeKey="pk_test_o55sKIP63bGjToyA5jcmjvkn000h03tlSz"
               token={this.handleToken}
