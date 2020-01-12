@@ -12,7 +12,10 @@ import Review from '../Components/Review.js';
 import Profile from '../Components/Profile';
 import About from '../Components/About';
 import Ad from '../Components/advertisment/Ad.js';
-import Map from '../Components/Map';
+
+import PostPaidAd from '../Components/PostPaidAd';
+
+//import Map from '../Components/Map';
 
 //redux
 import { connect } from 'react-redux';
@@ -39,8 +42,9 @@ export class home extends Component {
     adId: null,
     product: {
       name: 'adverstisment',
-      price: 64343.0
-    }
+      price: 0.99
+    },
+    paid: false
   };
 
   componentDidMount() {
@@ -50,20 +54,33 @@ export class home extends Component {
     if (adId) this.setState({ adIdParam: adId });
   }
 
-  handleToken = (token, addresses) => {
-    console.log(token, addresses);
+  // handleToken = (token, addresses) => {
+  //   console.log(token, addresses);
 
-    axios
-      .post('/checkout', { token })
-      .then(res => {
-        console.log(res.data);
-        if (res.data === 'success') {
-          toast('success ! check emails for details', { type: 'success' });
-        } else {
-          toast('something went wrong', { type: 'error' });
-        }
-      })
-      .catch(err => console.log(err));
+  //   axios
+  //     .post('/checkout', { token })
+  //     .then(res => {
+  //       console.log(res.data);
+  //       if (res.data === 'success') {
+  //         toast('success ! check emails for details', { type: 'success' });
+  //       } else {
+  //         toast('something went wrong', { type: 'error' });
+  //       }
+  //     })
+  //     .catch(err => console.log(err));
+  // };
+
+  handleToken = async (token, addresses) => {
+    const response = await axios.post('/checkout', { token });
+
+    const { status } = response.data;
+    console.log('Response:', response.data);
+    if (status === 'success') {
+      toast('Success! Check email for details', { type: 'success' });
+      this.setState({ paid: true });
+    } else {
+      toast('Something went wrong', { type: 'error' });
+    }
   };
 
   render() {
@@ -113,6 +130,8 @@ export class home extends Component {
       reviews.map(review => <Review key={review.reviewId} review={review} />)
     );
 
+    const checkPaid = this.state.paid ? <PostPaidAd openDialog /> : null;
+
     return (
       <div>
         <Grid container spacing={2}>
@@ -141,14 +160,22 @@ export class home extends Component {
               height="300px"
               zoom={15}
             /> */}
-            <br />
-            <br />
-            <StripeCheckout
-              stripeKey="pk_test_o55sKIP63bGjToyA5jcmjvkn000h03tlSz"
-              token={this.handleToken}
-              billingAddress
-              amount={this.state.product.price * 100}
-            />
+
+            <Card className={classes.Card}>
+              <CardContent className={classes.content}>
+                <h3>Post a paid advertisment for just $0.99</h3>
+
+                <StripeCheckout
+                  stripeKey="pk_test_o55sKIP63bGjToyA5jcmjvkn000h03tlSz"
+                  token={this.handleToken}
+                  billingAddress
+                  amount={this.state.product.price * 100}
+                  currency="USD"
+                />
+                {this.state.paid && <PostPaidAd openDialog />}
+                {/* {checkPaid} */}
+              </CardContent>
+            </Card>
           </Grid>
         </Grid>
       </div>

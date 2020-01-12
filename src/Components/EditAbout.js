@@ -253,9 +253,7 @@ class EditAbout extends Component {
 
             {this.state.latitude && this.state.longitude ? (
               <img
-                src={
-                  "https://maps.googleapis.com/maps/api/staticmap?center=${this.state.latitude},${this.state.longitude}&zoom=14&size=400x300&sensor=false&key='AIzaSyBu_WFDMOH6wmKg9ju9yjdmkDfKsVzXsiQ'"
-                }
+                src={`https://maps.googleapis.com/maps/api/staticmap?center=${this.state.latitude},${this.state.longitude}&zoom=14&size=400x300&sensor=false&key='AIzaSyBu_WFDMOH6wmKg9ju9yjdmkDfKsVzXsiQ'`}
                 alt=""
               />
             ) : null}

@@ -114,7 +114,6 @@ class Profile extends Component {
                   <a href={website} target="_blank" rel="noopener noreferrer">
                     {' '}
                     {website}
-                    {console.log(website)}
                   </a>
                   <hr />
                 </Fragment>
