@@ -64,7 +64,19 @@ class Notifications extends Component {
     let notificationsMarkup =
       notifications && notifications.length > 0 ? (
         notifications.map(not => {
-          const verb = not.type === 'like' ? 'liked' : 'commented on';
+          const verb =
+            not.type === 'like'
+              ? 'liked'
+              : not.type === 'comment'
+              ? 'commented'
+              : 'reviewed';
+          const phrase =
+            not.type === 'like'
+              ? 'your advertisment'
+              : not.type === 'comment'
+              ? 'your advertisment'
+              : 'your service';
+
           const time = dayjs(not.createdAt).fromNow();
           const iconColor = not.read ? 'primary' : 'secondary';
           const icon =
@@ -83,7 +95,7 @@ class Notifications extends Component {
                 variant="body1"
                 to={`/user/${not.recipientAt}/ad/${not.adId}`}
               >
-                {not.sender} {verb} your advertisment {time}
+                {not.sender} {verb} {phrase} {time}
               </Typography>
             </MenuItem>
           );
@@ -129,7 +141,6 @@ const mapStateToProps = state => ({
   notifications: state.user.notifications
 });
 
-export default connect(
-  mapStateToProps,
-  { markNotificationsRead }
-)(Notifications);
+export default connect(mapStateToProps, { markNotificationsRead })(
+  Notifications
+);

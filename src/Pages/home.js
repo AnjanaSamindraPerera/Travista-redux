@@ -25,6 +25,8 @@ import { getAds } from '../redux/actions/dataAction';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 
 const styles = {
   card: {
@@ -34,6 +36,11 @@ const styles = {
   content: {
     padding: 25,
     objectFit: 'cover'
+  },
+  gridList: {
+    width: 800,
+    height: 500,
+    transform: 'translateZ(0)'
   }
 };
 
@@ -127,10 +134,23 @@ export class home extends Component {
         </CardContent>
       </Card>
     ) : (
-      reviews.map(review => <Review key={review.reviewId} review={review} />)
+      <Card className={classes.Card}>
+        <GridList
+          cellHeight={150}
+          spacing={1}
+          className={classes.gridList}
+          cols={1}
+        >
+          {reviews.map(review => (
+            <GridListTile key={review.reviewId} cols={1} rows={1}>
+              <Review key={review.reviewId} review={review} />
+            </GridListTile>
+          ))}
+        </GridList>
+      </Card>
     );
 
-    const checkPaid = this.state.paid ? <PostPaidAd openDialog /> : null;
+    //const checkPaid = this.state.paid ? <PostPaidAd openDialog /> : null;
 
     return (
       <div>
@@ -173,6 +193,8 @@ export class home extends Component {
                   currency="USD"
                 />
                 {this.state.paid && <PostPaidAd openDialog />}
+                {console.log(this.state.paid)}
+
                 {/* {checkPaid} */}
               </CardContent>
             </Card>

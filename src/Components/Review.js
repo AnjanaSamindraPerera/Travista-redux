@@ -10,8 +10,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 
 const styles = {
   card: {
+    position: 'relative',
     display: 'flex',
-    marginBottom: 20
+    marginBottom: 5
   },
   image: {
     minWidth: 200
@@ -27,15 +28,20 @@ class Review extends Component {
     dayjs.extend(relativeTime);
     const {
       classes,
-      review: { body, travelerId, createdAt }
+      review: { body, travelerId, createdAt, travelerImage }
     } = this.props;
+
     return (
       <div>
-        <Card className={classes.Card}>
-          <CardMedia
-            image="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg"
-            title="profile image"
-          />
+        <Card className={classes.card}>
+          {travelerImage ? (
+            <CardMedia
+              image={travelerImage}
+              title="profile image"
+              className={classes.image}
+            />
+          ) : null}
+
           <CardContent className={classes.content}>
             <Typography variant="h5" color="primary">
               {travelerId}

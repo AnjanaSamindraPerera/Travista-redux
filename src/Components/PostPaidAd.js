@@ -19,7 +19,7 @@ import Tooltip from '@material-ui/core/Tooltip'; //five info when hover over
 
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import CloseIcon from '@material-ui/icons/Close';
-import WallpaperIcon from '@material-ui/icons/Wallpaper';
+//import WallpaperIcon from '@material-ui/icons/Wallpaper';
 
 //form dialogs
 import TextField from '@material-ui/core/TextField';
@@ -112,7 +112,7 @@ class PostAdWithImg extends Component {
 
     //constructing a url when open a advertisment
     const newPath = encodeURI(`/user/paidAd`);
-
+    ///const newPath = oldPath;
     if (oldPath === newPath) {
       //when checking notifications
       oldPath = newPath;
@@ -152,6 +152,8 @@ class PostAdWithImg extends Component {
     formData.append('body', body);
     console.log(image.name);
     this.props.postAdWithImage(formData);
+    // this.setState({ paid: false });
+    //window.location.href = '/';
   };
 
   render() {
@@ -163,14 +165,15 @@ class PostAdWithImg extends Component {
 
     return (
       <Fragment>
-        <MyButton onClick={this.handleOpen} tip="Post advertisment">
+        {/* <MyButton onClick={this.handleOpen} tip="Post advertisment">
           <WallpaperIcon />
-        </MyButton>
+        </MyButton> */}
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           fullWidth
           maxWidth="sm"
+          disableBackdropClick={true}
         >
           <MyButton
             tip="Close"
