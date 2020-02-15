@@ -11,7 +11,7 @@ import Autocomplete from 'react-google-autocomplete';
 import Paper from '@material-ui/core/Paper';
 
 //Geocode.setApiKey('AIzaSyBu_WFDMOH6wmKg9ju9yjdmkDfKsVzXsiQ'); my key
-Geocode.setApiKey('AIzaSyDIJ9XX2ZvRKCJcFRrl-lRanEtFUow4piM');
+Geocode.setApiKey('AIzaSyAsYzbklkE0hWmh4l77w4A_SHqwE7PynxY');
 
 Geocode.enableDebug();
 
@@ -348,7 +348,7 @@ class Map extends React.Component {
             </div>
           </div>
           <AsyncMap
-            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0&libraries=places"
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsYzbklkE0hWmh4l77w4A_SHqwE7PynxY&libraries=places"
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: this.props.height }} />}
             mapElement={<div style={{ height: `100%` }} />}

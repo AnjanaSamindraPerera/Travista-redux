@@ -1,8 +1,11 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import user from '../../images/user.png';
+
 // MUI
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 
@@ -23,7 +26,7 @@ const styles = {
   handle: {
     width: 60,
     height: 18,
-    backgroundColor: '#00bcd4',
+    backgroundColor: 'rgba(0,0,0, 0.7)',
     marginBottom: 7
   },
   date: {
@@ -43,6 +46,9 @@ const styles = {
     width: '50%',
     backgroundColor: 'rgba(0,0,0, 0.6)',
     marginBottom: 10
+  },
+  image: {
+    minWidth: 200
   }
 };
 const ReviewSkelton = props => {
@@ -50,6 +56,7 @@ const ReviewSkelton = props => {
 
   const content = Array.from({ length: 5 }).map((item, index) => (
     <Card className={classes.card} key={index}>
+      <CardMedia image={user} title="profile image" className={classes.image} />
       <CardContent className={classes.cardContent}>
         <div className={classes.handle} />
         <div className={classes.date} />

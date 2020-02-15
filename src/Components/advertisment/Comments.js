@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 //mui
 import Grid from '@material-ui/core/Grid';
@@ -51,9 +51,9 @@ class Comments extends Component {
                   <Grid item sm={9}>
                     <div className={classes.commentData}>
                       <Typography
-                        variant="h5"
-                        component={Link}
-                        to={`/user/${userHandle}`}
+                        variant="h6"
+                        // component={Link}
+                        // to={`/user/${userHandle}`}
                         color="primary"
                       >
                         {userHandle}

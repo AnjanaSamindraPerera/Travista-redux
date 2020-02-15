@@ -86,9 +86,13 @@ class Notifications extends Component {
               <ChatIcon color={iconColor} style={{ marginRight: 10 }} />
             );
 
-          return (
-            <MenuItem key={not.createdAt} onClick={this.handleClose}>
-              {icon}
+          //added to control going into a link when pressed review notification
+          const action =
+            not.type === 'review' ? (
+              <Typography component={Link} color="initial" variant="body1">
+                {not.sender} {verb} {phrase} {time}
+              </Typography>
+            ) : (
               <Typography
                 component={Link}
                 color="initial"
@@ -97,6 +101,21 @@ class Notifications extends Component {
               >
                 {not.sender} {verb} {phrase} {time}
               </Typography>
+            );
+
+          return (
+            <MenuItem key={not.createdAt} onClick={this.handleClose}>
+              {icon}
+
+              {action}
+              {/* <Typography
+                component={Link}
+                color="initial"
+                variant="body1"
+                to={`/user/${not.recipientAt}/ad/${not.adId}`}
+              >
+                {not.sender} {verb} {phrase} {time}
+              </Typography> */}
             </MenuItem>
           );
         })

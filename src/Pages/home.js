@@ -15,7 +15,7 @@ import Ad from '../Components/advertisment/Ad.js';
 
 import PostPaidAd from '../Components/PostPaidAd';
 
-//import Map from '../Components/Map';
+// import Map from '../Components/Map';
 
 //redux
 import { connect } from 'react-redux';
@@ -27,6 +27,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import Paper from '@material-ui/core/Paper';
 
 const styles = {
   card: {
@@ -182,21 +183,23 @@ export class home extends Component {
             /> */}
 
             <Card className={classes.Card}>
-              <CardContent className={classes.content}>
-                <h3>Post a paid advertisment for just $0.99</h3>
+              <Paper elevation={13}>
+                <CardContent className={classes.content}>
+                  <h3>Post a paid advertisment for just $0.99</h3>
 
-                <StripeCheckout
-                  stripeKey="pk_test_o55sKIP63bGjToyA5jcmjvkn000h03tlSz"
-                  token={this.handleToken}
-                  billingAddress
-                  amount={this.state.product.price * 100}
-                  currency="USD"
-                />
-                {this.state.paid && <PostPaidAd openDialog />}
-                {console.log(this.state.paid)}
+                  <StripeCheckout
+                    stripeKey="pk_test_o55sKIP63bGjToyA5jcmjvkn000h03tlSz"
+                    token={this.handleToken}
+                    billingAddress
+                    amount={this.state.product.price * 100}
+                    currency="USD"
+                  />
+                  {this.state.paid && <PostPaidAd openDialog />}
+                  {/* {console.log(this.state.paid)} */}
 
-                {/* {checkPaid} */}
-              </CardContent>
+                  {/* {checkPaid} */}
+                </CardContent>
+              </Paper>
             </Card>
           </Grid>
         </Grid>

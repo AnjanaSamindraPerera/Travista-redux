@@ -20,7 +20,8 @@ const styles = {
   //classes.these atributes
 
   form: {
-    textAlign: 'center'
+    textAlign: 'center',
+    margin: '1px '
   },
   pageTittle: {
     // color:'#43a047',
@@ -53,6 +54,11 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
+  },
+
+  form2: {
+    textAlign: 'center',
+    margin: '10px 5px 5px 5px '
   }
 };
 
@@ -107,13 +113,13 @@ class settingsPassword extends Component {
           spacing={10}
           className={classes.form}
           component={Paper}
-          style={{ height: '100vh' }}
+          style={{ height: '80vh' }}
         >
-          <Grid item sm>
+          <Grid item sm={3}>
             <Sidebar />
           </Grid>
 
-          <Grid item sm>
+          <Grid item sm={9}>
             <Typography variant="h2" className={classes.pageTittle}>
               Change Password
             </Typography>

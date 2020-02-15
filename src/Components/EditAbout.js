@@ -36,8 +36,7 @@ const styles = {
     margin: '10px auto 10px auto'
   },
   button: {
-    marginTop: 20,
-    position: 'relative'
+    float: 'right'
   },
   customError: {
     color: 'red',
@@ -153,7 +152,7 @@ class EditAbout extends Component {
     return (
       <Fragment>
         <Tooltip title="Edit details" placement="top">
-          <IconButton onClick={this.handleOpen} className={classes.Button}>
+          <IconButton onClick={this.handleOpen} className={classes.button}>
             <EditIcon color="primary" />
           </IconButton>
         </Tooltip>

@@ -41,7 +41,7 @@ const styles = theme => ({
       borderRadius: '50%'
     },
     '& .profile-details': {
-      textAlign: 'center',
+      textAlign: 'left',
       '& span, svg': {
         verticalAlign: 'middle'
       },
@@ -98,19 +98,21 @@ class Profile extends Component {
               <PublicIcon color="action" />
               <b>Intro</b>
               <hr />
+
               {bio && <Typography variant="body2">{bio}</Typography>}
               <hr />
               {location !== undefined && location !== ' ' && (
                 <Fragment>
                   <LocationOn color="primary" />
-
-                  <span>{location}</span>
+                  <b>Location :</b>
+                  {location}
                   <hr />
                 </Fragment>
               )}
               {website !== undefined && website !== ' ' && (
                 <Fragment>
                   <LinkIcon color="primary" />
+                  <b>Website :</b>
                   <a href={website} target="_blank" rel="noopener noreferrer">
                     {' '}
                     {website}
@@ -121,15 +123,16 @@ class Profile extends Component {
               {telNo !== undefined && telNo !== ' ' && (
                 <Fragment>
                   <LocalPhoneIcon color="primary" />
-
-                  <span>{telNo}</span>
+                  <b>Contact Number:</b>
+                  {telNo}
                   <hr />
                 </Fragment>
               )}
-
+              <EditAbout />
               {booking !== undefined && booking !== ' ' && (
                 <Fragment>
                   <LinkIcon color="primary" />
+                  <b>Booking At:</b>
                   <a href={booking} target="_blank" rel="noopener noreferrer">
                     {' '}
                     {booking}
@@ -138,7 +141,6 @@ class Profile extends Component {
                 </Fragment>
               )}
             </div>
-            <EditAbout />
           </div>
         </Paper>
       ) : (

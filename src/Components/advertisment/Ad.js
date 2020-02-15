@@ -18,7 +18,7 @@ import CardContent from '@material-ui/core/CardContent';
 import ChatIcon from '@material-ui/icons/Chat';
 
 //style
-import './Ad.css';
+import './Ad2.css';
 
 //redux
 
@@ -63,21 +63,32 @@ class Ad extends Component {
     const deleteButton =
       authenticated && userHandle === handle ? <DeleteAd adId={adId} /> : null;
     return (
-      <Card className="Post">
-        <div className="Post-user">
-          <div className="Post-user-avatar">
+      <Card className="Post2">
+        <div className="Post-user2">
+          <div className="Post-user-avatar2">
             <img src={userImage} alt="Chris" />
           </div>
-          <Typography variant="h5" color="primary">
-            {userHandle}
-          </Typography>
-          <div className="Post-caption">
+          <div className="userhandle2">
+            <Typography variant="h5" color="primary">
+              {userHandle}
+            </Typography>
             <Typography variant="body2" color="textSecondary">
               {dayjs(createdAt).fromNow()}
             </Typography>
           </div>
         </div>
-        {deleteButton}
+
+        {/* <div className="Post-caption2">
+          <Typography variant="body2" color="textSecondary">
+            {dayjs(createdAt).fromNow()}
+          </Typography>
+        </div> */}
+        <div className="bin">{deleteButton}</div>
+        <div className="Post-caption2">
+          <Typography variant="h6" color="initial">
+            {body}
+          </Typography>{' '}
+        </div>
         <CardContent className={classes.content}>
           {/* <Typography
               className="Post-caption"
@@ -87,12 +98,11 @@ class Ad extends Component {
               <strong> {body}</strong>
             </Typography> */}
 
-          <div className="Post-caption">
-            <strong>{body}</strong>
-          </div>
-
-          <div className="Post-image">
-            <div className="Post-image-bg">
+          <div className="Post-image2">
+            {/* <div>
+              <strong>{body}</strong>
+            </div> */}
+            <div className="Post-image-bg2">
               <img
                 alt=""
                 src={adImage}

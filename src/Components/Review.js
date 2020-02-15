@@ -43,14 +43,14 @@ class Review extends Component {
           ) : null}
 
           <CardContent className={classes.content}>
-            <Typography variant="h5" color="primary">
+            <Typography variant="h6" color="initial">
               {travelerId}
             </Typography>
             <Typography variant="body2" color="textSecondary">
               {dayjs(createdAt).fromNow()}
             </Typography>
             <br />
-            <Typography variant="body1" color="textSecondary">
+            <Typography variant="body2" color="initial">
               {body}
             </Typography>
           </CardContent>

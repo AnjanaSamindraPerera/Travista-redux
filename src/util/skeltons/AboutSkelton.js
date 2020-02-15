@@ -32,7 +32,7 @@ const styles = {
       borderRadius: '50%'
     },
     '& .profile-details': {
-      textAlign: 'center',
+      textAlign: 'left',
       '& span, svg': {
         verticalAlign: 'middle'
       },
@@ -86,13 +86,16 @@ const AboutSkelton = props => {
           <b>Intro</b>
           <p color="primary" /> <span>Bio</span>
           <hr />
-          <LocationOn color="primary" /> <span>Location</span>
+          <LocationOn color="primary" />{' '}
+          <span>
+            <b>Location</b>
+          </span>
           <hr />
-          <LinkIcon color="primary" /> https://website.com
+          <LinkIcon color="primary" /> <b>Website</b>
           <hr />
-          <LocalPhoneIcon color="primary" /> Telephone number
+          <LocalPhoneIcon color="primary" /> <b>Contact Number</b>
           <hr />
-          <LinkIcon color="primary" /> https://booking.com
+          <LinkIcon color="primary" /> <b>Booking At</b>
         </div>
       </div>
     </Paper>

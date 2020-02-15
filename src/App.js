@@ -30,6 +30,9 @@ import axios from 'axios';
 
 toast.configure();
 
+axios.defaults.baseURL =
+  'https://us-central1-travista-chat.cloudfunctions.net/api';
+
 // const theme = createMuiTheme(themeObject);
 
 const theme = createMuiTheme({

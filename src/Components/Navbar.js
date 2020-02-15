@@ -16,7 +16,7 @@ import HomeIcon from '@material-ui/icons/Home';
 // import Notifications from '@material-ui/icons/Notifications';
 import PostAd from './PostAd';
 import PostAdImage from './PostAdImage';
-import PostAdWithImg from './PostAdWithImg';
+// import PostAdWithImg from './PostAdWithImg';
 import Notifications from './Notifications';
 import SettingsIcon from '@material-ui/icons/Settings';
 
@@ -28,7 +28,7 @@ class Navbar extends Component {
         <Toolbar className="nav-container">
           {authenticated ? (
             <Fragment>
-              <PostAdWithImg />
+              {/* <PostAdWithImg /> */}
               <PostAdImage />
               <PostAd />
 
