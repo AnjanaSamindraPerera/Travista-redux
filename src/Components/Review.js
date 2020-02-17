@@ -3,6 +3,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import user from '../images/user.png';
 //material-ui
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -40,7 +41,13 @@ class Review extends Component {
               title="profile image"
               className={classes.image}
             />
-          ) : null}
+          ) : (
+            <CardMedia
+              image={user}
+              title="profile image"
+              className={classes.image}
+            />
+          )}
 
           <CardContent className={classes.content}>
             <Typography variant="h6" color="initial">

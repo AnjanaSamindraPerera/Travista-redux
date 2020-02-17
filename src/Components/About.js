@@ -95,6 +95,7 @@ class Profile extends Component {
           <div className={classes.profile}>
             <hr />
             <div className="profile-details">
+              <EditAbout />
               <PublicIcon color="action" />
               <b>Intro</b>
               <hr />
@@ -128,7 +129,7 @@ class Profile extends Component {
                   <hr />
                 </Fragment>
               )}
-              <EditAbout />
+
               {booking !== undefined && booking !== ' ' && (
                 <Fragment>
                   <LinkIcon color="primary" />
@@ -152,7 +153,7 @@ class Profile extends Component {
                 variant="contained"
                 color="primary"
                 component={Link}
-                to="/login"
+                to="/"
               >
                 Login
               </Button>

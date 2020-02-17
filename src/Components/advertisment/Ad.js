@@ -26,6 +26,7 @@ import { connect } from 'react-redux';
 
 const styles = {
   card: {
+    position: 'relative',
     display: 'flex',
     marginBottom: 20
   },
@@ -34,6 +35,7 @@ const styles = {
     minHeight: 20
   },
   content: {
+    position: 'relative',
     padding: 25,
     objectFit: 'cover'
   }
@@ -119,6 +121,7 @@ class Ad extends Component {
           </MyButton>
 
           <span>{commentCount} comments</span>
+
           <AdDialog
             adId={adId}
             userHandle={userHandle}

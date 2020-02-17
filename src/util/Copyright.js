@@ -8,7 +8,7 @@ export default () => {
   return (
     <Typography variant="body2" color="secondary" align="center">
       {'Copyright © '}
-      <Link color="primary" to="/login">
+      <Link color="primary" to="/">
         Travista
       </Link>{' '}
       {new Date().getFullYear()}

@@ -245,7 +245,7 @@ class signup extends Component {
 
               <small>
                 <Link
-                  to="/login"
+                  to="/"
                   variant="body2"
                   className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-body2 MuiTypography-colorPrimary"
                 >

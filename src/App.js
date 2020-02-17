@@ -62,7 +62,7 @@ if (token) {
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
     store.dispatch(logoutUser());
-    window.location.href = '/login';
+    window.location.href = '/';
   } else {
     store.dispatch({ type: SET_AUTHENTICATED });
     axios.defaults.headers.common['Authorization'] = token;
@@ -79,7 +79,7 @@ class App extends Component {
             <Navbar />
             <div className="container">
               <Switch>
-                <Route exact path="/" component={home} />
+                <Route exact path="/home" component={home} />
 
                 <Route exact path="/settings" component={settings} />
                 <Route
@@ -100,7 +100,7 @@ class App extends Component {
             </div>
             <div className="container2">
               <Switch>
-                <AuthRoute exact path="/login" component={login} />
+                <AuthRoute exact path="/" component={login} />
                 <AuthRoute exact path="/signup" component={signup} />
                 <AuthRoute
                   exact
